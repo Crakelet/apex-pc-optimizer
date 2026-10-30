@@ -53,7 +53,7 @@ const GAMES_DATA = [
         "id": "val_low_shadows",
         "group": "Calidad Gráfica Competitiva",
         "title": "Calidad de Sombras Mínima (Low Shadows)",
-        "description": "Desactiva sombras complejas y suavizado dinámico en mapas para ganar hasta 25 FPS en zonas con humo."
+        "description": "Reduce el detalle de sombras y el suavizado dinámico. Puede reducir la carga gráfica a costa de calidad visual; el efecto depende del equipo y la escena."
       },
       {
         "id": "val_low_textures",
@@ -182,7 +182,7 @@ const GAMES_DATA = [
         "id": "apex_csm_shadows_off",
         "group": "Calidad Gráfica Competitiva",
         "title": "Desactivar Sombras Dinámicas en Cascada (CSM Off)",
-        "description": "Configura setting.csm_enabled = 0 en videoconfig.txt. La mejora más potente de Apex Legends (hasta 40 FPS más)."
+        "description": "Desactiva las sombras en cascada con setting.csm_enabled = 0 en videoconfig.txt. Puede reducir la carga gráfica a costa de calidad visual; el efecto depende del equipo y la escena."
       },
       {
         "id": "apex_ragdolls_zero",

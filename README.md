@@ -11,6 +11,8 @@
 
 **Estado de seguridad:** los binarios están sin firma y la alerta comunicada de Bitdefender sigue en investigación. El código, las pruebas y sus límites se publican para revisión; no hay un falso positivo confirmado ni una aprobación de SignPath. Consulta [la investigación](docs/ANTIVIRUS.md), [Privacidad](PRIVACY.md) y [Code signing policy](CODE_SIGNING_POLICY.md).
 
+La preparación de la candidatura y las evidencias pendientes están en [SignPath Foundation](docs/SIGNPATH_READINESS.md). Publicar en GitHub inicia un historial verificable; no elimina por sí solo una detección ni concede reputación de SmartScreen.
+
 Apex reúne diagnóstico, ajustes de Windows, memoria, red, limpieza y perfiles de juegos en su diseño original de paneles de cristal, iluminación sutil y navegación lateral. **Todas las herramientas actuales son gratuitas y están disponibles en la app.** No hay una activación Pro, checkout ni selección de funciones de pago en esta versión.
 
 ![Interfaz de Apex PC Optimizer](docs/images/home.png)
@@ -21,8 +23,8 @@ Abre [GitHub Releases](https://github.com/Crakelet/apex-pc-optimizer/releases) y
 
 | Archivo | Uso |
 | --- | --- |
-| `Apex-PC-Optimizer-v1.0.2-Setup-x64.exe` | Instalador con acceso directo y desinstalación. |
-| `Apex-PC-Optimizer-v1.0.2-Portable-x64.exe` | Ejecutable sin instalación. No necesita Node.js. |
+| `Apex-PC-Optimizer-v1.0.3-Setup-x64.exe` | Instalador con acceso directo y desinstalación. |
+| `Apex-PC-Optimizer-v1.0.3-Portable-x64.exe` | Ejecutable sin instalación. No necesita Node.js. |
 | `SHA256SUMS.txt` | Huellas de integridad de los dos ejecutables. |
 
 La v1 funciona en **modo normal con herramientas reales**, tanto desde Setup/Portable como desde `run.bat` o `npm start`. Abrir la app no aplica ajustes. Antes de una acción que modifica el equipo se muestra una confirmación con su efecto y consecuencias; los detalles técnicos quedan en un nivel secundario.

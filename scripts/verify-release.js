@@ -13,7 +13,7 @@ function verifyPayload(root, archive, asar = require('@electron/asar')) {
   for (const field of ['name', 'version', 'main', 'license']) {
     if (packaged[field] !== manifest[field]) throw new Error(`El paquete tiene ${field} distinto de las fuentes.`);
   }
-  const files = ['LICENSE', 'THIRD_PARTY_NOTICES.md', 'appicon.ico', 'appicon.png'];
+  const files = ['LICENSE', 'THIRD_PARTY_NOTICES.md', 'PRIVACY.md', 'CODE_SIGNING_POLICY.md', 'appicon.ico', 'appicon.png'];
   for (const directory of ['src/main', 'src/preload', 'src/renderer']) {
     for (const name of fs.readdirSync(path.join(root, directory))) {
       if (/\.(js|html|css)$/.test(name)) files.push(path.join(directory, name));

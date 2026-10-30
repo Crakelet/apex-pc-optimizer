@@ -5,8 +5,8 @@ if exist "dist\win-unpacked\Apex PC Optimizer.exe" (
   start "" "dist\win-unpacked\Apex PC Optimizer.exe" %*
   exit /b 0
 )
-if exist "dist\Apex-PC-Optimizer-v1.0.2-Portable-x64.exe" (
-  start "" "dist\Apex-PC-Optimizer-v1.0.2-Portable-x64.exe" %*
+if exist "dist\Apex-PC-Optimizer-v1.0.3-Portable-x64.exe" (
+  start "" "dist\Apex-PC-Optimizer-v1.0.3-Portable-x64.exe" %*
   exit /b 0
 )
 if exist "node_modules\electron\dist\electron.exe" (

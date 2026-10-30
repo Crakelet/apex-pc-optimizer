@@ -1,51 +1,29 @@
-# Validación local de v1.0.2
+# Validación de v1.0.3
 
-Fecha: 30 de octubre de 2026, America/Santiago. Windows x64 compilación 26300; Node.js 24.15.0, Electron 45.0.0 y electron-builder 26.18.0.
+Fecha: 30 de octubre de 2026, America/Santiago. Esta versión prepara la primera publicación de fuentes MIT y la compilación de distribución en GitHub. Conserva la lógica y las comprobaciones de perfiles de juegos de [v1.0.2](VALIDATION-1.0.2.md).
 
-Esta revisión corrige el fallo al modificar ajustes de juego y el alcance de los perfiles de VALORANT. Conserva las 14 secciones, las herramientas gratuitas, el modo normal y la confirmación previa. No aplica optimizaciones automáticamente al iniciar.
+## Alcance del cambio
 
-## Causas comprobadas
+- Retira dos cifras de FPS sin medición de las descripciones del catálogo. No modifica los valores aplicados por esas herramientas.
+- Incluye `PRIVACY.md` y `CODE_SIGNING_POLICY.md` en el paquete; el verificador exige que coincidan con las fuentes.
+- Añade políticas, reportes privados de vulnerabilidades, actualizaciones de dependencias y workflows con acciones fijadas por revisión. La release genera hashes, estado Authenticode y procedencia de los ejecutables, y permanece en borrador para revisión manual.
 
-El historial de la aplicación conservaba motivos que la interfaz ocultaba: preferencias ausentes en algunos archivos y un error de acceso al reemplazar otro. La búsqueda anterior incluía varias configuraciones de VALORANT a la vez, entre ellas archivos antiguos y de solo lectura. No se atribuye el fallo original únicamente a que el juego estuviera abierto: antes no existía esa comprobación.
+## Evidencia de esta revisión
 
-La nueva versión exige cerrar el juego antes de editar o restaurar archivos, permite escoger un perfil concreto de VALORANT y comunica la causa del fallo. No añade claves desconocidas, termina procesos, cambia anticheat ni retira atributos de solo lectura. Los ajustes de registro conservan sus requisitos propios, incluida la detección de ejecutables cuando corresponde.
+El resultado actual de cada revisión está disponible en [Validar Windows](https://github.com/Crakelet/apex-pc-optimizer/actions/workflows/ci.yml) y [Preparar release en borrador](https://github.com/Crakelet/apex-pc-optimizer/actions/workflows/release.yml). Solo una ejecución terminada correctamente acredita sus pasos; la configuración del workflow por sí sola no lo hace.
 
-## Resultados
+La suite comprueba sintaxis, políticas de seguridad, restauración sobre recursos sintéticos, selección de perfiles, conflictos y permisos, IPC y contenido empaquetado. Las pruebas nativas de Windows usan claves y archivos desechables; la simulación intercepta las acciones y el arranque normal de comprobación bloquea mutaciones. No se aplican optimizaciones al equipo de desarrollo.
 
-| Comprobación | Resultado |
-| --- | --- |
-| Sintaxis y política de código | 73 archivos JavaScript comprobados. |
-| Pruebas automatizadas | 165 correctas, sin fallos ni omisiones. |
-| Selección de perfiles | Identificadores opacos estables, selección obligatoria con varios archivos, rechazo de identificadores desconocidos y escritura limitada al perfil elegido. |
-| Juego abierto o consulta fallida | Aplicación y restauración de archivos bloqueadas antes de guardar historial o cambios; pruebas con procesos simulados. |
-| Consulta nativa de procesos | Consulta de nombres de VALORANT correcta, de solo lectura. No se terminaron procesos ni se abrió el juego. |
-| Archivos protegidos | Pruebas con archivos sintéticos de solo lectura y errores de acceso; atributos e historial conservados. |
-| Respaldos históricos | Restauración de registros de varios archivos y comprobación previa de los destinos antes de la primera escritura; no se anuncia como una transacción indivisible. |
-| Mensajes y controles | El fallo específico llega a la interfaz, se retira el progreso, se recupera el control y se actualiza la propiedad del respaldo para restaurar desde el mismo ajuste. |
-| Arranque desde fuentes | Correcto con backend normal y mutaciones bloqueadas: selector, elección y consulta por perfil, 14 secciones, 50 ajustes y cinco juegos con 29 ajustes. |
-| Arranque empaquetado | Correcto en v1.0.2: selección explícita de perfil y consulta por identificador comprobadas, historial intacto y cero mutaciones invocadas. |
-| Portable v1.0.2 | Recorrido correcto en simulación, nueve acciones interceptadas, ningún error de renderer registrado y sandbox activo. |
-| Revisión visual | Capturas de escritorio y ventana compacta; ajuste del encabezado y barra de desplazamiento del selector de juegos. |
-| Distribución | 53 archivos coinciden con las fuentes finales; ambos ejecutables completos coinciden con sus SHA-256 registrados. |
-| Antivirus y firma | Ambos ejecutables: NotSigned. No hay un veredicto nuevo de Bitdefender; las comprobaciones funcionales no confirman un falso positivo. |
+En la revisión local v1.0.3 pasaron las 165 pruebas y la comprobación de sintaxis y políticas de los 73 archivos JavaScript. `npm audit` no informó vulnerabilidades conocidas en el árbol bloqueado de dependencias al consultar el 30 de octubre. Esto no certifica ausencia de fallos ni sustituye la revisión de antivirus.
 
-Las pruebas de escritura de juegos solo utilizan configuraciones sintéticas dentro de scratch. La revisión del perfil real del usuario fue de solo lectura; no se aplicaron ni restauraron ajustes a VALORANT. Los respaldos y atributos reales se conservaron.
+El paquete local sin instalador también superó `verify-release --directory-only`: versión 1.0.3 y los 55 archivos coincidentes. Se comprobará por separado la distribución completa creada por GitHub.
 
-La comprobación previa de acceso no acredita todos los permisos específicos de reemplazo ni evita cambios externos posteriores. Si Windows rechaza guardar, el respaldo se conserva y el error se comunica. La selección dura esta sesión, no identifica una cuenta de Riot y no cambia archivos por sí misma.
+La distribución debe registrar **55 archivos de código, recursos y políticas** coincidentes con el checkout usado para empaquetar, además de comprobar nombre, versión, entrada y licencia de `package.json`. Los hashes de un build local anterior no se atribuyen a un build de GitHub. La procedencia identifica el origen de los artefactos; no es una firma Authenticode ni un análisis de malware.
 
-## Evidencia
+## Límites y pendientes
 
-- `dist/release-manifest.json`, `dist/SHA256SUMS.txt` y `dist/signatures.json`: fuentes, versión e integridad de la distribución.
-- `scratch/release-startup-report.json`: comprobación desde fuentes de v1.0.2.
-- `scratch/v1.0.2-packaged-startup-report.json`: comprobación empaquetada correcta.
-- `scratch/v1.0.2-portable-smoke-report.json`: recorrido correcto del Portable en simulación.
-- `scratch/v1.0.2-release-games.png` y `scratch/v1.0.2-release-games-compact.png`: capturas empaquetadas.
-- `docs/images/game-profiles.png` y `docs/images/game-profiles-compact.png`: capturas revisadas del selector en el diseño glass.
+Los ejecutables siguen sin certificado de editor. La alerta de [Bitdefender](ANTIVIRUS.md) no tiene aún una identificación completa ni un veredicto documentado. Las pruebas funcionales no confirman un falso positivo.
 
-Scratch está excluido del repositorio. No publiques inventarios privados, perfiles reales ni respaldos del usuario.
+No se repitió la instalación/desinstalación ni toda la matriz de herramientas en equipos representativos por este cambio de documentación y empaquetado. Los resultados anteriores se conservan en [v1.0.2](VALIDATION-1.0.2.md), [v1.0.1](VALIDATION-1.0.1.md) y [v1.0.0](VALIDATION-1.0.0.md). No se garantiza compatibilidad universal ni una ganancia de FPS. Los borradores no se describen como distribuciones públicas revisadas.
 
-## Comprobaciones anteriores y pendientes
-
-Los dos escenarios nativos completos de restauración del motor se verificaron en v1.0.1; no se repitió esa matriz de registro para este cambio de perfiles. La instalación y desinstalación local por usuario se validaron en v1.0.0. Los informes históricos se conservan en [v1.0.1](VALIDATION-1.0.1.md) y [v1.0.0](VALIDATION-1.0.0.md).
-
-Siguen pendientes la firma del editor, el veredicto de Bitdefender sobre cada archivo exacto y la matriz en Windows desechable con protección activa y hardware representativo. La validación local no certifica todas las herramientas ni garantiza una mejora de FPS. No se publicaron archivos en GitHub ni se enviaron muestras al antivirus.
+Los logs, respaldos e inventarios privados permanecen fuera del repositorio. No se han enviado muestras ni mensajes al proveedor de antivirus, ni una solicitud a SignPath Foundation.

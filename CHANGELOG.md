@@ -1,5 +1,14 @@
 # Registro de cambios
 
+## 1.0.3 — Primera publicación de fuentes y procedencia
+
+- Publica las fuentes MIT, las pruebas y los límites de validación sin incluir perfiles, respaldos ni datos locales.
+- Añade políticas de privacidad y firma al paquete y verifica que coincidan con las fuentes.
+- Prepara compilaciones de Windows en GitHub Actions, hashes, estado Authenticode y atestaciones de procedencia; los ejecutables se conservan en borrador para revisión.
+- Activa reportes privados de vulnerabilidades y propone actualizaciones mensuales de dependencias.
+- Retira dos promesas de FPS sin medición del catálogo de juegos. No cambia los ajustes aplicados ni el diseño.
+- Documenta la investigación pendiente de Bitdefender y los requisitos de una futura solicitud a SignPath Foundation; no implica aprobación de ninguno.
+
 ## 1.0.2 — Archivos y perfiles de juegos
 
 - Corrige el mensaje genérico que ocultaba la causa del fallo al cambiar un ajuste individual del juego.

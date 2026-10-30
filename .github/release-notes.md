@@ -1,5 +1,7 @@
 # Apex PC Optimizer
 
+Versión 1.0.3 para evaluación: primera publicación de fuentes MIT, políticas de privacidad y firma incluidas en el paquete, compilación en GitHub con hashes y procedencia. Dos descripciones de juegos dejan de prometer cifras de FPS sin medición.
+
 La suite recupera el diseño glassmorphism original, sus 14 secciones y todas las herramientas gratuitas. No hay checkout, activación Pro ni una selección de funciones comerciales decidida.
 
 ## Incluye
@@ -34,9 +36,9 @@ Las limpiezas pueden ser irreversibles. Excluyen recuperación, autoguardados, p
 
 No se prometen porcentajes de FPS, latencia cero ni compatibilidad con todo hardware. Temperatura CPU no disponible cuando no hay una fuente compatible; los estados de hardware no confirmados se identifican. La puntuación del PC es un checklist, no un benchmark.
 
-La lógica de confirmación de un punto de restauración nuevo se prueba con respuestas simuladas; esto no implica que se haya creado un punto real sobre el equipo de desarrollo. Consulta el alcance de las comprobaciones en la [validación de esta versión](https://github.com/Crakelet/apex-pc-optimizer/blob/v1.0.2/docs/VALIDATION.md).
+La lógica de confirmación de un punto de restauración nuevo se prueba con respuestas simuladas; esto no implica que se haya creado un punto real sobre el equipo de desarrollo. Consulta el alcance de las comprobaciones en la [validación de esta versión](https://github.com/Crakelet/apex-pc-optimizer/blob/v1.0.3/docs/VALIDATION.md).
 
-La alerta de Bitdefender comunicada durante el desarrollo sigue pendiente de identificación y análisis del proveedor. No se anuncia un falso positivo confirmado ni un build aceptado por ese antivirus. Consulta [la revisión y sus límites](https://github.com/Crakelet/apex-pc-optimizer/blob/v1.0.2/docs/ANTIVIRUS.md). No desactives protecciones ni añadas exclusiones generales para probarlo.
+La alerta de Bitdefender comunicada durante el desarrollo sigue pendiente de identificación y análisis del proveedor. No se anuncia un falso positivo confirmado ni un build aceptado por ese antivirus. Consulta [la revisión y sus límites](https://github.com/Crakelet/apex-pc-optimizer/blob/v1.0.3/docs/ANTIVIRUS.md). No desactives protecciones ni añadas exclusiones generales para probarlo.
 
 ## Antes de publicar este borrador
 
