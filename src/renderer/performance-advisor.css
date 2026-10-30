@@ -1,0 +1,29 @@
+.performance-advisor { margin-bottom: 26px; padding: 22px; border: 1px solid var(--glass-border); border-radius: 16px; background: var(--glass-surface); box-shadow: var(--glass-inner-shadow); }
+.performance-advisor-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; }
+.performance-advisor h2 { color: var(--text-primary); margin: 0; font-size: 18px; line-height: 1.4; }
+.performance-advisor-header p,.performance-status { color: var(--text-secondary); font-size: 12.5px; line-height: 1.65; max-width: 72ch; }
+.performance-advisor-header p { margin: 7px 0 0; }
+.performance-analyze { flex-shrink: 0; min-height: 40px; }
+.performance-status { margin: 14px 0 0; user-select: text; }
+.performance-status[data-error="true"] { color: #f8d195; }
+.performance-facts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px 24px; padding: 18px 0; margin: 18px 0 0; border-top: 1px solid var(--glass-border); }
+.performance-facts>div { min-width: 0; }
+.performance-facts[hidden] { display: none; }
+.performance-facts dt { color: var(--text-secondary); font-size: 11.5px; line-height: 1.5; }
+.performance-facts dd { color: var(--text-primary); margin: 4px 0 0; font-size: 12.5px; line-height: 1.6; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; user-select: text; }
+.performance-recommendations { list-style: none; padding: 0; margin: 0; }
+.performance-recommendations>li { padding: 18px 0; border-top: 1px solid var(--glass-border); }
+.performance-recommendations>li:last-child { padding-bottom: 0; }
+.performance-recommendations h3 { font-size: 14px; line-height: 1.5; margin: 0; color: var(--text-primary); }
+.performance-recommendations p,.performance-recommendations li li { font-size: 12.5px; line-height: 1.7; color: var(--text-secondary); max-width: 75ch; }
+.performance-recommendations p { margin: 7px 0; }
+.performance-evidence { color: #b8e8ed !important; }
+[data-performance-category="design"] .performance-evidence { color: #e3cdf8 !important; }
+.performance-recommendations details { margin-top: 10px; }
+.performance-recommendations summary { cursor: pointer; color: var(--text-primary); font-size: 12px; padding: 5px 0; width: fit-content; }
+.performance-recommendations details ol { padding-left: 22px; margin: 8px 0 0; }
+.performance-recommendations li li { padding-left: 4px; margin: 7px 0; }
+.performance-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 13px; }
+.performance-actions button { font-size: 12px; min-height: 34px; padding: 7px 12px; }
+.performance-advisor :is(button,summary):focus-visible { outline: 2px solid #78eaf3; outline-offset: 4px; }
+@media (max-width: 1120px) { .performance-advisor-header { flex-direction: column; gap: 14px; } .performance-facts { grid-template-columns: 1fr; } }

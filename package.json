@@ -1,0 +1,90 @@
+{
+  "name": "apex-pc-optimizer",
+  "productName": "Apex PC Optimizer",
+  "version": "1.0.2",
+  "description": "Diagnóstico local de Windows y preferencias con respaldo y restauración verificable",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "start:real": "electron .",
+    "start:test": "electron . --test-mode",
+    "clean:dist": "node -e \"const fs=require('fs'); if(fs.existsSync('dist')) fs.rmSync('dist', {recursive:true, force:true});\"",
+    "build:portable": "electron-builder --win portable --x64 --publish never",
+    "build:nsis": "electron-builder --win nsis --x64 --publish never",
+    "build:dir": "electron-builder --win dir --x64 --publish never",
+    "build": "npm run check && npm test && electron-builder --win portable nsis --x64 --publish never && node scripts/hash-artifacts.js && node scripts/verify-release.js",
+    "verify:release": "node scripts/verify-release.js",
+    "check": "node scripts/check.js",
+    "test": "node --test tests/*.test.js",
+    "test:windows": "node --test tests/integration/windows.integration.js",
+    "test:smoke": "electron . --smoke-test",
+    "test:release-startup": "electron . --verify-release-startup"
+  },
+  "build": {
+    "appId": "com.apex.optimizer",
+    "productName": "Apex PC Optimizer",
+    "compression": "normal",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "appicon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Apex PC Optimizer",
+      "artifactName": "Apex-PC-Optimizer-v${version}-Setup-x64.exe",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "Apex-PC-Optimizer-v${version}-Portable-x64.exe"
+    },
+    "files": [
+      "src/main/*.js",
+      "src/preload/preload.js",
+      "src/renderer/*.html",
+      "src/renderer/*.js",
+      "src/renderer/*.css",
+      "appicon.ico",
+      "appicon.png",
+      "package.json",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "publish": [{ "provider": "github", "owner": "Crakelet", "repo": "apex-pc-optimizer" }]
+  },
+  "keywords": [
+    "windows",
+    "optimizer",
+    "gaming",
+    "design",
+    "tweaks"
+  ],
+  "author": {
+    "name": "Crakelet",
+    "url": "https://github.com/Crakelet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Crakelet/apex-pc-optimizer.git"
+  },
+  "homepage": "https://github.com/Crakelet/apex-pc-optimizer#readme",
+  "bugs": {
+    "url": "https://github.com/Crakelet/apex-pc-optimizer/issues"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": { "node": ">=22.12.0" },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  }
+}
