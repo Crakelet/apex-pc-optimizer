@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Informar una vulnerabilidad en privado
+    url: https://github.com/Crakelet/apex-pc-optimizer/security/advisories/new
+    about: No publiques credenciales, perfiles, rutas personales ni exploits en issues abiertos.

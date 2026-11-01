@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex PC Optimizer - Suite Profesional</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="glass-refinements.css">
+  <link rel="stylesheet" href="release-ux.css">
+  <link rel="stylesheet" href="performance-advisor.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Barra de Título Frameless -->
+    <header class="titlebar">
+      <div class="titlebar-drag">
+        <div class="brand-logo">
+          <img src="../../appicon.png" class="brand-img-logo" alt="Apex Logo">
+          <span class="brand-name">APEX <span class="brand-highlight">OPTIMIZER</span></span>
+          <span class="badge-version">v—</span>
+          <span class="badge-author" title="Proyecto original desarrollado por Crakelet">★ Crakelet</span>
+        </div>
+      </div>
+
+      <!-- Barra de búsqueda global -->
+      <div class="search-box-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" aria-label="Buscar ajustes y herramientas" id="global-search" class="global-search-input" data-i18n-placeholder="search_placeholder" placeholder="Buscar ajuste, juego o servicio...">
+      </div>
+
+      <!-- Acciones de Cabecera: Idioma y Actualizaciones -->
+      <div class="titlebar-extra-actions">
+        <button id="btn-lang-toggle" class="titlebar-pill-btn" title="Cambiar Idioma / Switch Language">
+          <span>🇪🇸 ES</span>
+        </button>
+        <button id="btn-check-updates" class="titlebar-pill-btn" title="Comprobar Actualizaciones en GitHub">
+          <span id="update-indicator-dot" class="update-dot" style="display: none;"></span>
+          <span data-i18n="btn_check_updates">🔄 Actualizaciones</span>
+        </button>
+      </div>
+
+      <div class="titlebar-controls">
+        <button id="btn-minimize" class="titlebar-btn" title="Minimizar">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+        <button id="btn-maximize" class="titlebar-btn" title="Maximizar">
+          <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+        </button>
+        <button id="btn-close" class="titlebar-btn btn-close" title="Cerrar">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </header>
+
+    <div id="test-mode-banner" class="test-mode-banner" hidden><strong>Entorno de pruebas</strong><span>Herramientas gratuitas · Los cambios se simulan y no modifican Windows.</span></div>
+    <div class="main-layout">
+      <!-- Barra lateral de navegación -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+          </button>
+          <button class="nav-item" data-tab="audit">
+            <span class="nav-icon">🏆</span>
+            <span class="nav-text">Puntuación del PC</span>
+            <span class="nav-pill pill-gaming" id="sidebar-score-badge">.../1.000</span>
+          </button>
+          <button class="nav-item" data-tab="ram">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-text">Memoria RAM</span>
+            <span class="nav-pill pill-gaming">WinCleaner</span>
+          </button>
+          <button class="nav-item" data-tab="hardware">
+            <span class="nav-icon">🔬</span>
+            <span class="nav-text">Hardware Gamer</span>
+            <span class="nav-pill pill-gaming">XMP & Discos</span>
+          </button>
+          <button class="nav-item" data-tab="advanced-tools">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-text">Herramientas avanzadas</span>
+            <span class="nav-pill pill-design">Optimizer</span>
+          </button>
+          <button class="nav-item" data-tab="apex-pro">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-text">Nivel Apex & BIOS</span>
+            <span class="nav-pill pill-gaming">GRATIS</span>
+          </button>
+          <button class="nav-item" data-tab="games">
+            <span class="nav-icon">🎯</span>
+            <span class="nav-text">Ajustes por Juego</span>
+            <span class="nav-pill pill-gaming">Por juego</span>
+          </button>
+          <button class="nav-item" data-tab="gaming">
+            <span class="nav-icon">🎮</span>
+            <span class="nav-text">Gaming & FPS</span>
+            <span class="nav-pill pill-gaming">Latencia</span>
+          </button>
+          <button class="nav-item" data-tab="network">
+            <span class="nav-icon">🌐</span>
+            <span class="nav-text">Red & Ping</span>
+            <span class="nav-pill pill-network">DNS/Ping</span>
+          </button>
+          <button class="nav-item" data-tab="design">
+            <span class="nav-icon">🎨</span>
+            <span class="nav-text">Modo Diseño</span>
+            <span class="nav-pill pill-design">Render</span>
+          </button>
+          <button class="nav-item" data-tab="services">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-text">Servicios Windows</span>
+          </button>
+          <button class="nav-item" data-tab="privacy">
+            <span class="nav-icon">🔒</span>
+            <span class="nav-text">Privacidad & IA</span>
+          </button>
+          <button class="nav-item" data-tab="cleanup">
+            <span class="nav-icon">🧹</span>
+            <span class="nav-text">Limpiador Disco</span>
+          </button>
+          <button class="nav-item" data-tab="backup">
+            <span class="nav-icon">🛡️</span>
+            <span class="nav-text">Seguridad & Backup</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="system-status-indicator" id="admin-status-wrap">
+            <span id="admin-status-dot" class="status-dot pulse-green"></span>
+            <span id="admin-status-label" class="status-label">Comprobando permisos...</span>
+          </div>
+          <button id="btn-relaunch-admin" class="btn-sidebar-action" style="display: none; margin-bottom: 6px; background: rgba(0, 242, 254, 0.15); border-color: #00f2fe; color: #00f2fe;" title="Reiniciar la aplicación con permisos de Administrador">
+            ⚡ Iniciar como Administrador
+          </button>
+          <button id="btn-quick-restore" class="btn-sidebar-action" title="Crear punto de restauración">
+            🛡️ Crear Punto Restauración
+          </button>
+        </div>
+      </aside>
+
+      <!-- Área de Contenido Principal -->
+      <main class="content-viewport">
+        <div id="operation-banner" class="operation-banner" role="status" aria-live="polite" hidden>
+          <div><strong id="operation-banner-label"></strong><p id="operation-banner-message"></p></div>
+          <button id="btn-dismiss-operation" type="button" aria-label="Ocultar resultado de operación" hidden>✕</button>
+        </div>
+        <!-- Banner de Notificación de Actualizaciones -->
+        <div id="update-notification-banner" class="update-banner" style="display: none;">
+          <div class="update-banner-left">
+            <span class="update-banner-badge" data-i18n="update_badge">NUEVA VERSIÓN</span>
+            <div class="update-banner-text">
+              <strong id="update-banner-title">¡Nueva versión disponible en GitHub!</strong>
+              <span id="update-banner-desc" class="update-banner-sub">Una versión más reciente está lista para descargar.</span>
+            </div>
+          </div>
+          <div class="update-banner-right">
+            <button id="btn-download-update" class="btn-update-download" data-i18n="update_btn_download">⬇️ Descargar Actualización</button>
+            <button id="btn-dismiss-update" class="btn-update-dismiss" title="Descartar">✕</button>
+          </div>
+        </div>
+
+        <!-- VISTA 1: DASHBOARD MEJORADO (ESTILO PARAGON TWEAKER) -->
+        <section id="view-dashboard" class="view-tab active">
+          <!-- Header de Bienvenida & Widgets Rápidos de Paragon -->
+          <div class="dash-paragon-header">
+            <div class="dash-welcome-group">
+              <h1 class="dash-welcome-title">Bienvenido a Apex PC Optimizer</h1>
+              <p class="dash-welcome-subtitle">Rendimiento, Optimización y Solución de Problemas Todo en Uno</p>
+              <div class="dash-header-pills">
+                <button id="btn-open-sys-info" class="dash-pill-btn">ℹ️ Info del Sistema</button>
+                <button id="btn-open-changelog" class="dash-pill-btn">📋 Registro de cambios</button>
+                <span class="dash-pro-unlocked-badge">Todas las herramientas incluidas</span>
+              </div>
+            </div>
+
+            <!-- Widget Superior Derecho de Estado de Optimización -->
+            <div class="dash-top-stats-widget">
+              <div class="top-stats-row">
+                <div class="top-stat-item">
+                  <span class="top-stat-label">Puntuación de optimización</span>
+                  <div class="top-stat-val-wrap">
+                    <span class="top-stat-icon">⚛️</span>
+                    <span class="top-stat-score" id="dash-header-score">--</span>
+                    <span class="top-stat-max">/1.000</span>
+                  </div>
+                </div>
+                <div class="top-stat-divider"></div>
+                <div class="top-stat-item">
+                  <span class="top-stat-label">Última limpieza</span>
+                  <span class="top-stat-val" id="dash-header-clean">Sin registros</span>
+                </div>
+                <div class="top-stat-divider"></div>
+                <div class="top-stat-item">
+                  <span class="top-stat-label">Estado del controlador</span>
+                  <span class="top-stat-val val-green" id="dash-header-gpu">Consultar controlador</span>
+                </div>
+                <div class="top-stat-badge" id="dash-header-areas-badge">
+                  <span class="badge-num" id="dash-header-issues-count">5</span>
+                  <span class="badge-txt">Áreas por revisar</span>
+                </div>
+                <button id="btn-dash-quick-optimize" class="btn-dash-re-audit" title="Re-analizar y optimizar">
+                  ⚙️ Re-analizar
+                </button>
+              </div>
+              <div class="top-stats-banner-bottom">
+                <div class="top-stats-glow-bar" id="dash-header-glow-bar" style="width: 65%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fila de 3 Indicadores Radiales de Telemetría (CPU, GPU, RAM) -->
+          <div class="telemetry-gauges-grid">
+            <!-- CPU Card -->
+            <div class="gauge-card">
+              <div class="gauge-card-header">
+                <div class="gauge-icon-wrap icon-cpu">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+                </div>
+                <button class="btn-gauge-details" id="btn-gauge-detail-cpu">Ver detalles</button>
+              </div>
+              <div class="gauge-card-content">
+                <div class="gauge-val-group">
+                  <span class="gauge-number" id="gauge-cpu-val">--%</span>
+                  <span class="gauge-title">Uso de CPU</span>
+                </div>
+                <div class="gauge-circle-wrap">
+                  <svg class="gauge-svg" viewBox="0 0 100 100">
+                    <circle class="gauge-track" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-fill fill-cpu" id="gauge-cpu-circle" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-center-dot" cx="50" cy="50" r="3"></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- GPU Card -->
+            <div class="gauge-card">
+              <div class="gauge-card-header">
+                <div class="gauge-icon-wrap icon-gpu">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="7" cy="12" r="2"/><circle cx="17" cy="12" r="2"/><path d="M12 9v6"/></svg>
+                </div>
+                <button class="btn-gauge-details" id="btn-gauge-detail-gpu">Ver detalles</button>
+              </div>
+              <div class="gauge-card-content">
+                <div class="gauge-val-group">
+                  <span class="gauge-number" id="gauge-gpu-val">--%</span>
+                  <span class="gauge-title">Uso de GPU</span>
+                </div>
+                <div class="gauge-circle-wrap">
+                  <svg class="gauge-svg" viewBox="0 0 100 100">
+                    <circle class="gauge-track" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-fill fill-gpu" id="gauge-gpu-circle" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-center-dot" cx="50" cy="50" r="3"></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- RAM Card -->
+            <div class="gauge-card">
+              <div class="gauge-card-header">
+                <div class="gauge-icon-wrap icon-ram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M8 6v12M12 6v12M16 6v12"/></svg>
+                </div>
+                <button class="btn-gauge-details" id="btn-gauge-detail-ram">Ver detalles</button>
+              </div>
+              <div class="gauge-card-content">
+                <div class="gauge-val-group">
+                  <span class="gauge-number" id="gauge-ram-val">--%</span>
+                  <span class="gauge-title">Uso de RAM</span>
+                </div>
+                <div class="gauge-circle-wrap">
+                  <svg class="gauge-svg" viewBox="0 0 100 100">
+                    <circle class="gauge-track" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-fill fill-ram" id="gauge-ram-circle" cx="50" cy="50" r="38"></circle>
+                    <circle class="gauge-center-dot" cx="50" cy="50" r="3"></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección Central: Monitor de Temperatura en Vivo + Ascensión & Disco -->
+          <div class="dash-middle-grid">
+            <!-- Izquierda: Monitor de Temperatura con Gráfico de Onda Carmesí -->
+            <div class="dash-temp-card">
+              <div class="dash-temp-header">
+                <div class="temp-title-group">
+                  <div class="temp-icon">🌡️</div>
+                  <h3 class="temp-title">Monitor de Temperatura</h3>
+                </div>
+                <div class="temp-switch-pills">
+                  <button id="btn-temp-cpu" class="temp-pill active">CPU</button>
+                  <button id="btn-temp-gpu" class="temp-pill">GPU</button>
+                </div>
+              </div>
+              
+              <div class="temp-canvas-container">
+                <div class="temp-y-axis">
+                  <span>100°C</span>
+                  <span>80°C</span>
+                  <span>60°C</span>
+                  <span>40°C</span>
+                  <span>20°C</span>
+                </div>
+                <div class="temp-canvas-wrap">
+                  <canvas id="temp-canvas" width="600" height="175"></canvas>
+                  <div id="temp-floating-pill" class="temp-floating-badge">
+                    <span id="temp-badge-type">CPU</span>
+                    <strong id="temp-badge-val">--°C</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Derecha: Ascensión de Windows (Desbloqueado) & Disco C: -->
+            <div class="dash-right-stack">
+              <!-- Card: Ascensión de Windows (Apex Pro Mode) -->
+              <div class="ascension-card">
+                <div class="ascension-header">
+                  <div class="ascension-title-group">
+                    <span class="ascension-icon">🎮</span>
+                    <div>
+                      <h4 class="ascension-title">Ascensión de Windows</h4>
+                      <span class="ascension-badge-status" id="ascension-status-badge">● INACTIVO</span>
+                    </div>
+                  </div>
+                  <span class="ascension-unlocked-tag">GRATUITO</span>
+                </div>
+                <p class="ascension-desc">
+                  Ajusta temporalmente la prioridad de procesos secundarios compatibles. Guarda sus prioridades originales para restaurarlas al desactivar la sesión.
+                </p>
+                <div class="ascension-footer">
+                  <button id="btn-toggle-ascension" class="btn-ascension-action">
+                    ⚡ Activar Ascensión Apex
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card: Disco (C:) -->
+              <div class="dash-disk-card">
+                <div class="disk-card-header">
+                  <div class="disk-title-group">
+                    <div class="disk-icon">💽</div>
+                    <span class="disk-title">Disco (C:)</span>
+                  </div>
+                  <button id="btn-disk-quick-clean" class="btn-disk-clean">Limpiar archivos</button>
+                </div>
+                <div class="disk-card-body">
+                  <div class="disk-usage-row">
+                    <span class="disk-bullet">●</span>
+                    <span id="disk-usage-text" class="disk-text">Cargando almacenamiento...</span>
+                  </div>
+                  <div class="disk-prog-wrap">
+                    <div id="disk-prog-bar" class="disk-prog-fill" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perfiles de Optimización Rápidos -->
+          <h2 class="section-title">Perfiles de Optimización con 1 Clic</h2>
+          <div class="profiles-showcase">
+            <div class="profile-feature-card card-gaming-glow">
+              <div class="profile-card-header">
+                <div class="profile-badge badge-game">🎮 MODO GAMING EXCLUSIVO</div>
+                <span class="profile-tag">FPS & Mínima Latencia</span>
+              </div>
+              <h3 class="profile-heading">Optimización para Jugadores</h3>
+              <p class="profile-desc">Desactiva GameDVR, Nagle Algorithm, asigna máxima prioridad a la GPU y activa el plan de energía Ultimate Performance.</p>
+              <div class="profile-card-footer">
+                <button id="btn-apply-gaming-profile" class="btn-action-primary btn-game">
+                  ⚡ Activar Perfil Gaming Completo
+                </button>
+              </div>
+            </div>
+
+            <div class="profile-feature-card card-design-glow">
+              <div class="profile-card-header">
+                <div class="profile-badge badge-design">🎨 MODO DISEÑO & RENDER</div>
+                <span class="profile-tag">Estabilidad & Productividad</span>
+              </div>
+              <h3 class="profile-heading">Optimización para Creadores</h3>
+              <p class="profile-desc">Habilita LargeSystemCache, balance de renderizado en segundo plano y protege calibración de color (ICC) y tabletas Wacom.</p>
+              <div class="profile-card-footer">
+                <button id="btn-apply-design-profile" class="btn-action-primary btn-design">
+                  ✨ Activar Perfil Diseño Completo
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISTA AUDITORÍA & PUNTUACIÓN (1.000 PTS) -->
+        <section id="view-audit" class="view-tab">
+          <!-- Hero Card similar a Paragon Tweaker -->
+          <div class="audit-hero-card">
+            <div class="audit-hero-top">
+              <div class="audit-score-group">
+                <span class="audit-big-score" id="audit-total-score">--</span>
+                <span class="audit-max-label">/1,000</span>
+              </div>
+              <div class="audit-meta-group">
+                <span class="audit-calc-label">Puntuación calculada sobre 1000 puntos</span>
+                <span class="audit-date-label" id="audit-updated-date">Actualizado hoy</span>
+              </div>
+            </div>
+            <p class="audit-description">
+              Esta puntuación evalúa acciones de optimización, comprobaciones de Windows, controladores y mantenimiento. 
+              Los elementos corregidos suman puntos hacia el objetivo de 1.000 puntos.
+            </p>
+            <div class="audit-hero-actions">
+              <button id="btn-re-audit" class="btn-action-secondary">
+                🔄 Re-analizar Sistema
+              </button>
+              <button id="btn-optimize-all-audit" class="btn-action-primary btn-game">
+                ⚡ Optimizar Todo (Subir a 1.000 pts)
+              </button>
+            </div>
+          </div>
+
+          <!-- Acordeones de Categorías -->
+          <div id="audit-categories-container" class="audit-accordion-list">
+            <!-- Rellenado dinámicamente desde renderer.js -->
+          </div>
+        </section>
+
+        <!-- VISTA NIVEL APEX PRO & BIOS (PLAN MÁS CARO DE PARAGON TOTALMENTE GRATIS) -->
+        <section id="view-apex-pro" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Nivel Apex: BIOS y ajustes avanzados</h1>
+              <p class="view-subtitle">Herramientas avanzadas incluidas gratuitamente. Revisa el alcance de cada cambio y confirma solo lo que necesitas.</p>
+            </div>
+            <span class="dash-pro-unlocked-badge" style="font-size: 12px; padding: 6px 14px;">Todas las herramientas gratuitas</span>
+          </div>
+
+          <!-- Grid de Ajustes Avanzados de Kernel & Hardware -->
+          <h2 class="section-title">Energía, hardware y preferencias de sesión</h2>
+          <div class="apex-restore-row"><p>El plan de energía, la preferencia MSI y TCP guardan su estado anterior. Ascensión se desactiva desde el panel principal.</p><button id="btn-restore-apex" class="btn-action-primary">Restaurar ajustes Apex</button></div>
+          <div class="apex-pro-cards-grid">
+            <!-- Card 1: Apex Power Plan -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">⚡</span>
+                <span class="apex-impact-badge impact-extreme">Máximo Rendimiento</span>
+              </div>
+              <h3 class="apex-card-title">Apex Ultimate Power Plan</h3>
+              <p class="apex-card-desc">
+                Crea un plan independiente con un mínimo alto de CPU y sin suspensión selectiva USB. Guarda el plan anterior; puede aumentar consumo y temperatura.
+              </p>
+              <button id="btn-apply-apex-power" class="btn-action-primary btn-game">
+                ⚡ Crear y activar plan Apex
+              </button>
+            </div>
+
+            <!-- Card 2: Modo MSI GPU -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">🎮</span>
+                <span class="apex-impact-badge impact-high">Ajuste avanzado</span>
+              </div>
+              <h3 class="apex-card-title">Modo MSI (Message Signaled Interrupts)</h3>
+              <p class="apex-card-desc">
+                Activa la preferencia MSI en las GPU detectadas con una clave compatible. Guarda el valor anterior; el efecto depende del controlador y puede requerir reiniciar.
+              </p>
+              <button id="btn-apply-msi-gpu" class="btn-action-primary btn-game">
+                🎯 Activar Modo MSI en GPU
+              </button>
+            </div>
+
+            <!-- Card 3: Advanced Network Stack -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">🌐</span>
+                <span class="apex-impact-badge impact-high">TCP de Windows</span>
+              </div>
+              <h3 class="apex-card-title">Pila de red: RSS, ECN y autoajuste TCP</h3>
+              <p class="apex-card-desc">
+                Habilita RSS, desactiva ECN y usa autoajuste TCP normal. Guarda los valores anteriores. El resultado depende de tu adaptador y conexión.
+              </p>
+              <button id="btn-apply-apex-net" class="btn-action-primary btn-game">
+                🚀 Aplicar Red Nivel Apex
+              </button>
+            </div>
+
+            <!-- Card 4: Microsecond Timer Resolution -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">⏱️</span>
+                <span class="apex-impact-badge impact-extreme">Temporal</span>
+              </div>
+              <h3 class="apex-card-title">Prioridades de sesión</h3>
+              <p class="apex-card-desc">
+                Ajusta temporalmente prioridades de procesos secundarios. No cambia el arranque ni la tasa de sondeo de tus periféricos.
+              </p>
+              <button id="btn-apply-apex-timer" class="btn-action-primary btn-game">
+                ⏱️ Prioridades de sesión
+              </button>
+            </div>
+
+            <!-- Card 5: Limpiador de Caché de Shaders (Anti-Stuttering) -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">⚡</span>
+                <span class="apex-impact-badge impact-high">Liberar espacio</span>
+              </div>
+              <h3 class="apex-card-title">Caché de Sombreadores DirectX & GPU</h3>
+              <p class="apex-card-desc">
+                Limpia archivos antiguos de caché compatibles. Los juegos volverán a compilar sombreadores, lo que puede causar tirones en el primer inicio. No se puede deshacer.
+              </p>
+              <button id="btn-clean-shaders-apex" class="btn-action-primary btn-game">
+                🧹 Purgar Caché de Shaders
+              </button>
+            </div>
+
+            <!-- Card 6: Zero Delay Windows UI -->
+            <div class="apex-feature-card">
+              <div class="apex-card-top">
+                <span class="apex-card-icon">🚀</span>
+                <span class="apex-impact-badge impact-medium">Cero Retardo</span>
+              </div>
+              <h3 class="apex-card-title">Respuesta Instantánea de la Interfaz</h3>
+              <p class="apex-card-desc">
+                Reduce la espera de los menús de Windows. Guarda la preferencia anterior para restaurarla desde Seguridad y Backup.
+              </p>
+              <button id="btn-zero-delay-apex" class="btn-action-primary btn-game">
+                ⚡ Aplicar Cero Retardo UI
+              </button>
+            </div>
+          </div>
+
+          <!-- Suite Extendida: Cero Retardo & Snappy UI -->
+          <div class="snappy-ui-section" style="margin-top: 32px;">
+            <div class="snappy-header-row">
+              <div>
+                <h2 class="section-title">⚡ Suite de Cero Retardo & Snappy UI (Windows 11 / 10)</h2>
+                <p class="view-subtitle">Ajustes directos del registro para eliminar la pesadez visual de Windows, menús con lag, animaciones lentas y publicidad integrada.</p>
+              </div>
+              <button id="btn-apply-all-snappy-ui" class="btn-action-primary btn-game" style="white-space: nowrap;">
+                ⚡ Aplicar Todo Cero Retardo
+              </button>
+            </div>
+            <div id="snappy-ui-cards-container" class="snappy-cards-grid">
+              <!-- Rellenado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Guías de Optimización de BIOS -->
+          <h2 class="section-title" style="margin-top: 30px;">Guías Interactivas de Optimización de BIOS</h2>
+          <p class="view-subtitle" style="margin-bottom: 16px;">
+            Ajustes de placa base para exprimir un resultado que depende del hardware y del juego en tu procesador y memoria RAM (compatibles con ASUS, MSI, Gigabyte y ASRock).
+          </p>
+          <div id="bios-guides-container" class="bios-accordion-list">
+            <!-- Rellenado dinámicamente con getBiosGuides() -->
+          </div>
+        </section>
+
+        <!-- VISTA NUEVA: AJUSTES POR JUEGO (GAME OPTIMIZER) -->
+        <section id="view-games" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Optimizaciones Competitivas por Juego</h1>
+              <p class="view-subtitle">Selecciona tu juego y activa o desactiva mejoras específicas de motor gráfico (INI/Config), latencia de ratón y prioridad de CPU.</p>
+            </div>
+          </div>
+          <!-- Selector de Juegos en Pestañas -->
+          <div id="game-selector-tabs" class="game-selector-tabs"></div>
+          <!-- Paneles de Ajustes Específicos por Juego -->
+          <div id="game-panels-container"></div>
+        </section>
+
+        <!-- VISTA 2: GAMING & FPS -->
+        <section id="view-gaming" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Optimizaciones de Gaming y Latencia</h1>
+              <p class="view-subtitle">Activa o desactiva individualmente cada ajuste con su switch correspondiente.</p>
+            </div>
+            <button id="btn-apply-all-gaming" class="btn-action-primary btn-game">
+              ⚡ Aplicar Todos los Ajustes Gaming
+            </button>
+          </div>
+          <section class="performance-advisor" data-performance-category="gaming" aria-labelledby="gaming-advisor-title">
+            <div class="performance-advisor-header">
+              <div><h2 id="gaming-advisor-title">Prepara tu próxima partida</h2><p>Revisa pantalla, memoria y controlador antes de cambiar ajustes.</p></div>
+              <button class="btn-action-secondary performance-analyze" type="button">Revisar mi equipo</button>
+            </div>
+            <p class="performance-status" role="status" aria-live="polite">La revisión consulta datos locales. Los cambios se eligen por separado.</p>
+            <dl class="performance-facts" hidden></dl>
+            <ol class="performance-recommendations"></ol>
+          </section>
+          <div id="gaming-tweaks-container" class="tweaks-list"></div>
+        </section>
+
+        <!-- VISTA 3: RED & PING -->
+        <section id="view-network" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Centro de Red, Latencia y DNS</h1>
+              <p class="view-subtitle">Mide tu ping a servidores de juegos, cambia tus DNS con un clic y optimiza la pila TCP/IP.</p>
+            </div>
+            <div class="network-quick-actions">
+              <button id="btn-flush-dns" class="btn-action-primary btn-network-mini">⚡ Limpiar DNS</button>
+              <button id="btn-reset-winsock" class="btn-action-primary btn-network-mini">🔄 Reset Winsock</button>
+              <button id="btn-restart-adapters" class="btn-action-primary btn-network-mini">🔌 Reiniciar Adaptador</button>
+            </div>
+          </div>
+
+          <!-- Ping Tester -->
+          <div class="network-tool-card">
+            <div class="network-tool-header">
+              <div class="tool-title-wrap">
+                <span class="tool-icon">📡</span>
+                <div>
+                  <h3 class="tool-heading">Medidor de Latencia (Ping Tester)</h3>
+                  <p class="tool-sub">Comprueba tu ping real hacia servidores de juegos y proveedores clave en tiempo real.</p>
+                </div>
+              </div>
+              <div class="ping-input-group">
+                <input type="text" id="custom-ping-host" class="input-text-mini" placeholder="IP o dominio (ej: google.com)">
+                <button id="btn-test-ping" class="btn-action-primary btn-network">
+                  📶 Medir Ping Ahora
+                </button>
+              </div>
+            </div>
+            <div id="ping-results-grid" class="ping-results-grid">
+              <div class="ping-card">
+                <span class="ping-name">Cloudflare Gaming</span>
+                <span class="ping-host">1.1.1.1</span>
+                <span id="ping-val-1111" class="ping-value mono">-- ms</span>
+                <span class="ping-status-badge">Esperando prueba...</span>
+              </div>
+              <div class="ping-card">
+                <span class="ping-name">Google DNS</span>
+                <span class="ping-host">8.8.8.8</span>
+                <span id="ping-val-8888" class="ping-value mono">-- ms</span>
+                <span class="ping-status-badge">Esperando prueba...</span>
+              </div>
+              <div class="ping-card">
+                <span class="ping-name">Riot Games / Valorant</span>
+                <span class="ping-host">playvalorant.com</span>
+                <span id="ping-val-riot" class="ping-value mono">-- ms</span>
+                <span class="ping-status-badge">Esperando prueba...</span>
+              </div>
+              <div class="ping-card">
+                <span class="ping-name">Steam / Valve CDN</span>
+                <span class="ping-host">steampowered.com</span>
+                <span id="ping-val-steam" class="ping-value mono">-- ms</span>
+                <span class="ping-status-badge">Esperando prueba...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selector de DNS -->
+          <div class="network-tool-card">
+            <div class="network-tool-header">
+              <div class="tool-title-wrap">
+                <span class="tool-icon">🛡️</span>
+                <div>
+                  <h3 class="tool-heading">Cambiador Rápido de Servidores DNS</h3>
+                  <p class="tool-sub">Elige un proveedor para resolver nombres. Cambiar DNS no garantiza menor ping durante una partida.</p>
+                </div>
+              </div>
+            </div>
+            <div class="dns-grid">
+              <div class="dns-card" data-dns="cloudflare">
+                <div class="dns-badge">DNS PÚBLICO</div>
+                <h4 class="dns-title">Cloudflare DNS</h4>
+                <span class="dns-ips mono">1.1.1.1 • 1.0.0.1</span>
+                <p class="dns-desc">Servicio público de resolución de nombres. Compara su respuesta y revisa la política de privacidad del proveedor.</p>
+                <button class="btn-dns-apply" data-dns="cloudflare">Usar Cloudflare</button>
+              </div>
+
+              <div class="dns-card" data-dns="google">
+                <div class="dns-badge badge-neutral">DNS PÚBLICO</div>
+                <h4 class="dns-title">Google Public DNS</h4>
+                <span class="dns-ips mono">8.8.8.8 • 8.8.4.4</span>
+                <p class="dns-desc">Red global de alta disponibilidad y excelente compatibilidad internacional.</p>
+                <button class="btn-dns-apply" data-dns="google">Usar Google</button>
+              </div>
+
+              <div class="dns-card" data-dns="quad9">
+                <div class="dns-badge badge-security">SEGURIDAD MALWARE</div>
+                <h4 class="dns-title">Quad9 DNS</h4>
+                <span class="dns-ips mono">9.9.9.9 • 149.112.112.112</span>
+                <p class="dns-desc">Bloquea automáticamente dominios maliciosos y phishing.</p>
+                <button class="btn-dns-apply" data-dns="quad9">Usar Quad9</button>
+              </div>
+
+              <div class="dns-card" data-dns="dhcp">
+                <div class="dns-badge badge-default">POR DEFECTO</div>
+                <h4 class="dns-title">Automático (DHCP)</h4>
+                <span class="dns-ips mono">Asignado por tu Router</span>
+                <p class="dns-desc">Usa los DNS asignados por DHCP, o recupera la configuración anterior que guardó Apex.</p>
+                <button class="btn-dns-apply" data-dns="dhcp">Usar DNS por DHCP</button>
+                <button class="btn-dns-apply" data-dns="original">Restaurar DNS guardados</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ajustes de Red & TCP Toggles -->
+          <h2 class="section-title">Optimizaciones de la Pila TCP/IP de Windows</h2>
+          <div id="network-tweaks-container" class="tweaks-list"></div>
+        </section>
+
+        <!-- VISTA 4: MODO DISEÑO & ESTUDIO PROFESIONAL -->
+        <section id="view-design" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Estudio Profesional de Diseño, Render y Productividad</h1>
+              <p class="view-subtitle">Aceleración de motores de render (Premiere, After Effects, DaVinci, Blender), gestión de RAM pesada para 4K/8K y optimización de tabletas Wacom.</p>
+            </div>
+            <button id="btn-apply-all-design" class="btn-action-primary btn-design">
+              ✨ Aplicar Modo Estudio Completo
+            </button>
+          </div>
+
+          <section class="performance-advisor" data-performance-category="design" aria-labelledby="design-advisor-title">
+            <div class="performance-advisor-header">
+              <div><h2 id="design-advisor-title">Prepara tu flujo creativo</h2><p>Pasos específicos para Photoshop, Premiere y Blender, con sus guías oficiales.</p></div>
+              <button class="btn-action-secondary performance-analyze" type="button">Revisar mi equipo</button>
+            </div>
+            <p class="performance-status" role="status" aria-live="polite">Consulta memoria, unidades y GPU. Apex no cambia las preferencias de tus proyectos.</p>
+            <dl class="performance-facts" hidden></dl>
+            <ol class="performance-recommendations"></ol>
+          </section>
+          <!-- SECCIÓN: SOFTWARE DE DISEÑO Y EDICIÓN DETECTADO -->
+          <div class="design-detected-section" style="margin-bottom: 24px;">
+            <div class="design-section-header">
+              <div>
+                <h2 class="section-title" style="margin-bottom: 4px;">🎨 Software de Diseño & Edición Detectado</h2>
+                <p class="section-subtitle">Detección automática de Photoshop (PSD), Illustrator (AI), InDesign, Premiere, DaVinci y Blender con aceleración de GPU dedicada.</p>
+              </div>
+              <div class="design-header-actions">
+                <button id="btn-refresh-design-apps" class="btn-action-secondary" style="font-size: 12px; padding: 6px 12px;">
+                  🔄 Actualizar
+                </button>
+              </div>
+            </div>
+            <div id="detected-design-apps-container" class="design-apps-grid">
+              <div class="design-empty-slot">Escaneando programas de diseño instalados...</div>
+            </div>
+          </div>
+
+          <!-- Toolkit Rápido de Diseño y Render -->
+          <h2 class="section-title">Herramientas Rápidas para Creadores & Renderizado</h2>
+          <div class="design-toolkit-grid">
+            <!-- Card 1: Purgar Standby RAM -->
+            <div class="design-tool-card">
+              <div class="design-tool-header">
+                <div class="design-tool-icon-wrap">🚀</div>
+                <span class="design-badge-pro">Pre-Render</span>
+              </div>
+              <h3 class="design-tool-title">Purgar Standby RAM Inmediata</h3>
+              <p class="design-tool-desc">
+                Solicita liberar memoria en espera. Windows ya reutiliza esa memoria cuando hace falta; purgarla puede provocar recargas y no añade RAM ni garantiza acelerar un render.
+              </p>
+              <button id="btn-purge-ram-design" class="btn-design-tool">
+                🚀 Purgar Standby RAM Ahora
+              </button>
+            </div>
+
+            <!-- Card 2: Limpiador de Caché de Medios y Scratch Disk -->
+            <div class="design-tool-card">
+              <div class="design-tool-header">
+                <div class="design-tool-icon-wrap">🧹</div>
+                <span id="design-cache-size-tag" class="design-badge-pro">Ahorro SSD</span>
+              </div>
+              <h3 class="design-tool-title">Limpiador de Caché Creativa</h3>
+              <p class="design-tool-desc">
+                Elimina cachés regenerables antiguas con las aplicaciones cerradas. Conserva proyectos, scratch, renders y recuperación. La caché se reconstruirá cuando vuelva a necesitarse; no se puede deshacer.
+              </p>
+              <button id="btn-clean-media-cache-design" class="btn-design-tool">
+                🧹 Limpiar Caché Creativa
+              </button>
+            </div>
+
+            <!-- Card 3: Optimizar Tableta Gráfica -->
+            <div class="design-tool-card">
+              <div class="design-tool-header">
+                <div class="design-tool-icon-wrap">✏️</div>
+                <span class="design-badge-pro">Trazo Fluido</span>
+              </div>
+              <h3 class="design-tool-title">Corrector de Latencia en Tableta Gráfica</h3>
+              <p class="design-tool-desc">
+                Desactiva el retardo de mantener pulsado para clic derecho en Windows Ink, eliminando el molesto círculo de espera al apoyar el lápiz en Photoshop, Illustrator y Clip Studio Paint.
+              </p>
+              <button id="btn-opt-tablet-design" class="btn-design-tool">
+                ✏️ Optimizar Tableta Gráfica
+              </button>
+            </div>
+
+            <!-- Card 4: Forzar GPU en Apps de Diseño -->
+            <div class="design-tool-card">
+              <div class="design-tool-header">
+                <div class="design-tool-icon-wrap">⚡</div>
+                <span class="design-badge-pro">CUDA / RTX</span>
+              </div>
+              <h3 class="design-tool-title">Forzar GPU de Alto Rendimiento en Suites</h3>
+              <p class="design-tool-desc">
+                Asigna prioridad de GPU dedicada en DirectX a Photoshop, Illustrator, InDesign, Premiere, DaVinci y Blender para garantizar máxima aceleración gráfica sin usar GPUs integradas.
+              </p>
+              <button id="btn-assign-gpu-design" class="btn-design-tool">
+                ⚡ Asignar GPU a Apps Detectadas
+              </button>
+            </div>
+          </div>
+
+          <!-- Ajustes Granulares de Diseño -->
+          <h2 class="section-title">Ajustes Granulares de Sistema para Productividad</h2>
+          <div id="design-tweaks-container" class="tweaks-list"></div>
+        </section>
+
+        <!-- VISTA 5: SERVICIOS DE WINDOWS -->
+        <section id="view-services" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Control Individual de Servicios de Windows</h1>
+              <p class="view-subtitle">Deshabilita de forma segura servicios no esenciales para liberar memoria RAM y ciclos de CPU.</p>
+            </div>
+          </div>
+          <div id="services-tweaks-container" class="tweaks-list"></div>
+        </section>
+
+        <!-- VISTA 6: PRIVACIDAD & DEBLOAT -->
+        <section id="view-privacy" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Privacidad, Telemetría y Debloat</h1>
+              <p class="view-subtitle">Desactiva el rastreo de Microsoft, la telemetría invasiva, la IA de Copilot y las sugerencias de Bing.</p>
+            </div>
+            <button id="btn-open-debloat-from-privacy" class="btn-action-primary btn-game">
+              🧹 Debloat Personalizado
+            </button>
+          </div>
+          <div id="privacy-tweaks-container" class="tweaks-list"></div>
+        </section>
+
+        <!-- VISTA 7: LIMPIEZA DE DISCO -->
+        <section id="view-cleanup" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Limpiador Profundo de Disco</h1>
+              <p class="view-subtitle">Elimina residuos acumulados de instaladores, sombreadores de GPU, temporales y cachés de aplicaciones.</p>
+            </div>
+            <button id="btn-run-all-cleanup" class="btn-action-primary btn-clean">
+              🧹 Ejecutar Limpieza Completa
+            </button>
+          </div>
+
+          <!-- Banner destacado de Cachés de Apps y Desarrollo -->
+          <div class="app-caches-banner-card">
+            <div class="banner-icon-wrap">⚡</div>
+            <div class="banner-info-wrap">
+              <div class="banner-title-line">
+                <span class="banner-title">Cachés de Aplicaciones y Herramientas (NPM, VS Code, Python, Launchers)</span>
+                <span id="badge-cleanup-view-apps" class="clean-badge clean">Calculando...</span>
+              </div>
+              <p class="banner-desc">Revisa las cachés detectadas antes de limpiar. Se excluyen archivos de recuperación, proyectos y enlaces a otras carpetas. Las cachés eliminadas no se pueden restaurar.</p>
+            </div>
+            <button id="btn-cleanup-view-clean-apps" class="btn-action-primary btn-game">
+              🚀 Limpiar Cachés de Apps
+            </button>
+          </div>
+
+          <div id="cleanup-tweaks-container" class="tweaks-list" style="margin-top: 20px;"></div>
+        </section>
+
+        <!-- VISTA: MEMORIA RAM (INSPIRADA EN WINMEMORYCLEANER) -->
+        <section id="view-ram" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">🧠 Optimizador Avanzado de Memoria RAM</h1>
+              <p class="view-subtitle">Gestión nativa de listas de memoria kernel de Windows (Standby, Working Sets y Modified Pages) inspirada en WinMemoryCleaner.</p>
+            </div>
+            <div class="view-header-actions">
+              <button id="btn-clean-all-ram" class="btn-action-primary btn-game">
+                🚀 Limpieza Profunda de RAM
+              </button>
+            </div>
+          </div>
+
+          <!-- Métricas de RAM en tiempo real -->
+          <div class="ram-metrics-grid">
+            <div class="ram-metric-card">
+              <span class="ram-metric-title">Memoria Total</span>
+              <span id="ram-total-val" class="ram-metric-num mono">-- GB</span>
+              <span class="ram-metric-sub">RAM física instalada</span>
+            </div>
+            <div class="ram-metric-card highlight-used">
+              <span class="ram-metric-title">En Uso Activo</span>
+              <span id="ram-used-val" class="ram-metric-num mono">-- %</span>
+              <div class="ram-metric-bar-wrap">
+                <div id="ram-metric-bar" class="ram-metric-bar" style="width: 0%;"></div>
+              </div>
+              <span id="ram-used-mb-val" class="ram-metric-sub">-- MB en uso</span>
+            </div>
+            <div class="ram-metric-card">
+              <span class="ram-metric-title">Memoria Libre</span>
+              <span id="ram-free-val" class="ram-metric-num mono">-- GB</span>
+              <span class="ram-metric-sub">Disponible inmediatamente</span>
+            </div>
+            <div class="ram-metric-card">
+              <span class="ram-metric-title">Caché en Espera (Standby)</span>
+              <span id="ram-standby-val" class="ram-metric-num mono">-- MB</span>
+              <span class="ram-metric-sub">Páginas retenidas por Windows</span>
+            </div>
+          </div>
+
+          <!-- Barra de Configuración de Limpieza Automática Inteligente -->
+          <div class="auto-clean-box">
+            <div class="auto-clean-info">
+              <span class="auto-clean-badge">AUTOMATIZACIÓN SMART</span>
+              <div>
+                <h4 class="auto-clean-heading">Limpieza Automática de RAM en Segundo Plano</h4>
+                <p class="auto-clean-desc">Ejecuta la purga nativa automáticamente sin interrupciones cuando la memoria RAM supere el umbral seleccionado.</p>
+              </div>
+            </div>
+            <div class="auto-clean-controls">
+              <div class="threshold-selector">
+                <span class="threshold-label">Umbral:</span>
+                <button class="btn-threshold-opt" data-thresh="75">75%</button>
+                <button class="btn-threshold-opt active" data-thresh="80">80%</button>
+                <button class="btn-threshold-opt" data-thresh="85">85%</button>
+                <button class="btn-threshold-opt" data-thresh="90">90%</button>
+              </div>
+              <button id="btn-toggle-auto-clean" class="btn-auto-clean-toggle">
+                ⚪ Activar Auto-Limpieza
+              </button>
+            </div>
+          </div>
+
+          <!-- Métodos Nativos de Limpieza (Solo botones, sin checkboxes) -->
+          <div class="ram-actions-grid">
+            <div class="ram-action-card">
+              <div class="ram-card-top">
+                <div class="ram-card-icon">🧹</div>
+                <div>
+                  <h3 class="ram-card-title">Vaciar Standby List (Caché en Espera)</h3>
+                  <p class="ram-card-desc">Libera la memoria en espera del kernel (SystemMemoryListInformation) que Windows retiene para archivos antiguos. Evita micro-tirones y stuttering súbito en juegos.</p>
+                </div>
+              </div>
+              <div class="item-transparency-box" style="display: flex;">
+                <div class="transparency-row">
+                  <span class="transparency-tag">🎯 Mecanismo Nativo:</span>
+                  <code class="transparency-code">NtSetSystemInformation(0x50, MemoryPurgeStandbyList)</code>
+                </div>
+                <div class="transparency-row">
+                  <span class="transparency-tag">🛡️ Seguridad:</span>
+                  <span class="transparency-safe">✓ Revisar consecuencias &bull; No cierra ningún juego ni programa</span>
+                </div>
+              </div>
+              <button id="btn-purge-standby" class="btn-ram-execute">
+                🧹 Purgar Standby List Ahora
+              </button>
+            </div>
+
+            <div class="ram-action-card">
+              <div class="ram-card-top">
+                <div class="ram-card-icon">⚡</div>
+                <div>
+                  <h3 class="ram-card-title">Purgar Working Sets de Procesos</h3>
+                  <p class="ram-card-desc">Reduce el conjunto de trabajo de todos los procesos en segundo plano usando EmptyWorkingSet(), recuperando memoria física que las apps no están usando activamente.</p>
+                </div>
+              </div>
+              <div class="item-transparency-box" style="display: flex;">
+                <div class="transparency-row">
+                  <span class="transparency-tag">🎯 Mecanismo Nativo:</span>
+                  <code class="transparency-code">Process.EmptyWorkingSet() en procesos de usuario</code>
+                </div>
+                <div class="transparency-row">
+                  <span class="transparency-tag">🛡️ Seguridad:</span>
+                  <span class="transparency-safe">✓ Revisar consecuencias &bull; Trima memoria ociosa sin pérdidas</span>
+                </div>
+              </div>
+              <button id="btn-trim-working-sets" class="btn-ram-execute">
+                ⚡ Purgar Working Sets Ahora
+              </button>
+            </div>
+
+            <div class="ram-action-card">
+              <div class="ram-card-top">
+                <div class="ram-card-icon">💾</div>
+                <div>
+                  <h3 class="ram-card-title">Volcar Modified Page List (Páginas Modificadas)</h3>
+                  <p class="ram-card-desc">Fuerza la escritura a disco de las páginas modificadas retenidas en el búfer del sistema operativo, desocupando RAM física real al instante.</p>
+                </div>
+              </div>
+              <div class="item-transparency-box" style="display: flex;">
+                <div class="transparency-row">
+                  <span class="transparency-tag">🎯 Mecanismo Nativo:</span>
+                  <code class="transparency-code">NtSetSystemInformation(0x50, MemoryFlushModifiedList)</code>
+                </div>
+                <div class="transparency-row">
+                  <span class="transparency-tag">🛡️ Seguridad:</span>
+                  <span class="transparency-safe">✓ Revisar consecuencias &bull; Sincroniza búferes pendientes con disco</span>
+                </div>
+              </div>
+              <button id="btn-flush-modified" class="btn-ram-execute">
+                💾 Volcar Páginas Modificadas
+              </button>
+            </div>
+          </div>
+
+          <!-- Tabla de Procesos con Mayor Consumo de RAM -->
+          <div class="ram-processes-card">
+            <div class="ram-proc-header">
+              <h3 class="ram-proc-title">📊 Procesos con Mayor Consumo de Memoria</h3>
+              <button id="btn-refresh-ram-stats" class="btn-table-action">🔄 Actualizar Lista</button>
+            </div>
+            <div class="ram-proc-table-wrap">
+              <table class="ram-proc-table">
+                <thead>
+                  <tr>
+                    <th>Nombre del Proceso</th>
+                    <th>PID</th>
+                    <th>Memoria en Uso</th>
+                    <th style="text-align: right;">Acción Rápida</th>
+                  </tr>
+                </thead>
+                <tbody id="ram-proc-tbody">
+                  <tr>
+                    <td colspan="4" style="text-align: center; color: var(--text-secondary); padding: 25px;">
+                      Cargando procesos en ejecución...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISTA: HARDWARE GAMER (XMP/EXPO, DISCOS SSD VS HDD Y LATENCIA USB) -->
+        <section id="view-hardware" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">🔬 Diagnóstico Gamer de Hardware y Memoria</h1>
+              <p class="view-subtitle">Detección de perfiles XMP / EXPO, asimetría de frecuencia en RAM, juegos competitivos en discos HDD y latencia USB.</p>
+            </div>
+            <div class="view-header-actions">
+              <button id="btn-refresh-hardware" class="btn-action-primary btn-game">
+                🔄 Actualizar Diagnóstico
+              </button>
+            </div>
+          </div>
+
+          <!-- Banner de Alertas y Diagnóstico Global -->
+          <div id="hw-overall-banner" class="hw-alert-box" style="display: none;">
+            <div class="hw-alert-icon">⚠️</div>
+            <div class="hw-alert-content">
+              <h4 id="hw-alert-title" class="hw-alert-heading">Diagnóstico de Rendimiento</h4>
+              <p id="hw-alert-desc" class="hw-alert-text">Cargando análisis de hardware...</p>
+            </div>
+          </div>
+
+          <!-- Tarjeta 1: Diagnóstico de Memoria RAM & XMP/EXPO -->
+          <div class="advanced-tool-card" style="margin-bottom: 24px;">
+            <div class="advanced-card-header">
+              <div class="advanced-card-info">
+                <span class="advanced-card-badge">ARQUITECTURA DE MEMORIA</span>
+                <h3 class="advanced-card-title">⚡ Diagnóstico de Memoria RAM, Slots DIMM & XMP / EXPO</h3>
+                <p class="advanced-card-desc">Supervisa la frecuencia real configurada, velocidad nominal certificada de fábrica, modo de canal y asimetría de módulos.</p>
+              </div>
+              <div class="hw-badge-wrap">
+                <span id="hw-ram-status-badge" class="hw-status-pill pill-analyzing">Analizando...</span>
+              </div>
+            </div>
+
+            <!-- Fila de Métricas Principales de RAM -->
+            <div class="hw-metrics-row">
+              <div class="hw-metric-chip">
+                <span class="hw-chip-label">Capacidad Total</span>
+                <span id="hw-ram-total" class="hw-chip-val mono">-- GB</span>
+                <span id="hw-ram-type" class="hw-chip-sub">DDR4</span>
+              </div>
+              <div class="hw-metric-chip">
+                <span class="hw-chip-label">Frecuencia en Uso</span>
+                <span id="hw-ram-current-speed" class="hw-chip-val mono">-- MT/s</span>
+                <span class="hw-chip-sub">Velocidad del bus</span>
+              </div>
+              <div class="hw-metric-chip">
+                <span class="hw-chip-label">Frecuencia de Fábrica</span>
+                <span id="hw-ram-max-speed" class="hw-chip-val mono">-- MT/s</span>
+                <span class="hw-chip-sub">Perfil nominal máx.</span>
+              </div>
+              <div class="hw-metric-chip">
+                <span class="hw-chip-label">Modo de Canal</span>
+                <span id="hw-ram-channel-mode" class="hw-chip-val">--</span>
+                <span id="hw-ram-channel-sub" class="hw-chip-sub">Ancho de banda</span>
+              </div>
+            </div>
+
+            <!-- Contenedor Visual de Ranuras DIMM (Placa Madre) -->
+            <div class="hw-dimm-wrapper">
+              <h4 class="hw-subheading">Ranuras DIMM en Placa Madre (Slots Físicos)</h4>
+              <div id="hw-dimm-slots-container" class="hw-dimm-grid">
+                <div class="hw-dimm-slot-empty">Escaneando slots de memoria...</div>
+              </div>
+            </div>
+
+            <!-- Recomendación Contextual de BIOS -->
+            <div id="hw-ram-advice-box" class="hw-advice-card" style="display: none;">
+              <div class="hw-advice-icon">💡</div>
+              <div class="hw-advice-text" id="hw-ram-advice-content">...</div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Detector de Almacenamiento & Juegos en Disco HDD (Anti-Stuttering) -->
+          <div class="advanced-tool-card" style="margin-bottom: 24px;">
+            <div class="advanced-card-header">
+              <div class="advanced-card-info">
+                <span class="advanced-card-badge">PREVENCIÓN DE STUTTERING</span>
+                <h3 class="advanced-card-title">🎮 Detector de Almacenamiento & Juegos en Disco Mecánico (HDD)</h3>
+                <p class="advanced-card-desc">Identifica juegos competitivos instalados en discos HDD que causan caídas súbitas de FPS (1% Low) y micro-tirones por streaming de texturas.</p>
+              </div>
+              <div class="hw-badge-wrap">
+                <span id="hw-storage-summary-badge" class="hw-status-pill pill-analyzing">Escaneando unidades...</span>
+              </div>
+            </div>
+
+            <!-- Unidades Físicas Detectadas -->
+            <div class="hw-drives-wrapper">
+              <h4 class="hw-subheading">Unidades de Almacenamiento Detectadas</h4>
+              <div id="hw-drives-container" class="hw-drives-grid">
+                <div class="hw-dimm-slot-empty">Detectando discos físicos...</div>
+              </div>
+            </div>
+
+            <!-- Explicación Técnica para Gamers -->
+            <div class="hw-tech-banner">
+              <div class="hw-tech-icon">⚠️</div>
+              <div>
+                <strong>¿Por qué los juegos en HDD tienen micro-stuttering?</strong>
+                <p>Títulos competitivos como <strong>Apex Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>The Finals</strong>, <strong>Fortnite</strong> y <strong>VALORANT</strong> cargan modelos, texturas y shaders dinámicamente desde el almacenamiento mientras juegas. La velocidad de un HDD (~100 MB/s con alta latencia mecánica de ~15ms) satura el bus de lectura, causando congelamientos de pantalla de 100-300ms durante combates. Moverlos a una unidad SSD (SATA o NVMe) elimina este cuello de botella.</p>
+              </div>
+            </div>
+
+            <!-- Lista de Juegos Detectados en HDD -->
+            <div class="hw-games-section">
+              <div class="hw-games-header">
+                <h4 class="hw-subheading">Juegos Detectados en Discos Mecánicos (HDD)</h4>
+                <span id="hw-hdd-count-badge" class="hw-count-badge badge-warning">0 juegos</span>
+              </div>
+              <div id="hw-hdd-games-container" class="hw-games-list">
+                <div class="hw-dimm-slot-empty">No se han detectado juegos en disco HDD.</div>
+              </div>
+            </div>
+
+            <!-- Lista de Juegos Verificados en SSD -->
+            <div class="hw-games-section" style="margin-top: 18px;">
+              <div class="hw-games-header">
+                <h4 class="hw-subheading">Juegos Verificados en Unidad Rápida (SSD / NVMe)</h4>
+                <span id="hw-ssd-count-badge" class="hw-count-badge badge-success">0 juegos</span>
+              </div>
+              <div id="hw-ssd-games-container" class="hw-games-list compact">
+                <div class="hw-dimm-slot-empty">Escaneando juegos en SSD...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3: Optimizador de Latencia USB (Mouse & Teclado Gaming) -->
+          <div class="advanced-tool-card">
+            <div class="advanced-card-header">
+              <div class="advanced-card-info">
+                <span class="advanced-card-badge">INPUT LAG & POLLING RATE</span>
+                <h3 class="advanced-card-title">⚡ Optimizador de Latencia USB para Ratón y Teclado Gaming</h3>
+                <p class="advanced-card-desc">Desactiva la suspensión selectiva USB del plan de energía activo. Cambia el ahorro de energía; no modifica ni mide el polling rate del dispositivo.</p>
+              </div>
+              <div class="hw-badge-wrap">
+                <span id="hw-usb-status-badge" class="hw-status-pill pill-analyzing">Consultando...</span>
+              </div>
+            </div>
+
+            <div class="hw-usb-content">
+              <div class="hw-usb-info-box">
+                <div class="hw-usb-info-item">
+                  <span class="hw-usb-title">Suspensión Selectiva de USB:</span>
+                  <span id="hw-usb-current-mode" class="hw-usb-mode mono">Consultando estado...</span>
+                </div>
+                <p class="hw-usb-desc">
+                  Windows suspende y reduce la energía de los controladores USB en reposo. Al mover el ratón o pulsar una tecla tras una pausa, el controlador USB experimenta un retraso de activación (<em>wake-up latency</em>) de varios milisegundos. Al desactivarlo, los periféricos funcionan a máxima velocidad y con tasa de sondeo completamente estable.
+                </p>
+              </div>
+              <div class="hw-usb-actions">
+                <button id="btn-toggle-usb-latency" class="btn-action-primary btn-game">
+                  ⚡ Activar Ultra-Baja Latencia USB
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISTA: HERRAMIENTAS PRO & SUITE OPTIMIZER (OPTIMIZER & TBOK) -->
+        <section id="view-advanced-tools" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">🚀 Herramientas avanzadas & Suite Optimizer</h1>
+              <p class="view-subtitle">Gestión de inicio de Windows, escudo anti-telemetría a nivel de red (HOSTS) y limpiador extendido de aplicaciones.</p>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 1: ESCUDO ANTI-RASTREO HOSTS -->
+          <div class="network-tool-card">
+            <div class="network-tool-header">
+              <div class="tool-title-wrap">
+                <span class="tool-icon">🛡️</span>
+                <div>
+                  <h3 class="tool-heading">Escudo Anti-Rastreo HOSTS (Inspirado en Optimizer)</h3>
+                  <p class="tool-sub">Bloquea más de 20 dominios de telemetría, diagnósticos y rastreo de Microsoft enrutándolos a 0.0.0.0 a nivel de red local.</p>
+                </div>
+              </div>
+              <div id="hosts-shield-badge" class="hosts-status-badge">
+                Comprobando estado...
+              </div>
+            </div>
+            <div class="hosts-actions-row">
+              <button id="btn-apply-hosts-shield" class="btn-action-primary btn-game">
+                🛡️ Activar Bloqueo HOSTS
+              </button>
+              <button id="btn-revert-hosts-shield" class="btn-modal-cancel">
+                ↩️ Restaurar HOSTS Original
+              </button>
+            </div>
+            <div class="item-transparency-box" style="margin-top: 14px; display: flex;">
+              <div class="transparency-row">
+                <span class="transparency-tag">🎯 Archivo Modificado:</span>
+                <code class="transparency-code">C:\\Windows\\System32\\drivers\\etc\\hosts</code>
+              </div>
+              <div class="transparency-row">
+                <span class="transparency-tag">🛡️ Seguridad:</span>
+                <span class="transparency-safe">Guarda el archivo hosts anterior para restaurarlo desde esta sección</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 2: GESTOR DE APLICACIONES DE INICIO -->
+          <div class="ram-processes-card" style="margin-top: 24px;">
+            <div class="ram-proc-header">
+              <div>
+                <h3 class="ram-proc-title">⚡ Gestor de Aplicaciones de Inicio (Startup Manager)</h3>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
+                  Controla qué programas inician con Windows para reducir el tiempo de arranque y ahorrar RAM.
+                </p>
+              </div>
+              <button id="btn-refresh-startup" class="btn-table-action">🔄 Recargar Apps de Inicio</button>
+            </div>
+            <div class="ram-proc-table-wrap">
+              <table class="ram-proc-table">
+                <thead>
+                  <tr>
+                    <th>Aplicación</th>
+                    <th>Origen</th>
+                    <th>Ruta de Ejecución</th>
+                    <th style="text-align: right;">Estado / Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="startup-apps-tbody">
+                  <tr>
+                    <td colspan="4" style="text-align: center; color: var(--text-secondary); padding: 25px;">
+                      Cargando aplicaciones de inicio...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 3: LIMPIADOR EXTENDIDO DE APLICACIONES (OPTIMIZER CLEANER) -->
+          <div class="network-tool-card" style="margin-top: 24px;">
+            <div class="network-tool-header">
+              <div class="tool-title-wrap">
+                <span class="tool-icon">🧹</span>
+                <div>
+                  <h3 class="tool-heading">Limpieza de Caché de Aplicaciones y Desarrollador</h3>
+                  <p class="tool-sub">Elimina gigabytes acumulados por herramientas de desarrollo, editores, navegadores y launchers de forma con revisión previa.</p>
+                </div>
+              </div>
+              <div class="app-cleaner-master-actions" style="display: flex; align-items: center; gap: 12px;">
+                <span id="badge-total-app-caches" class="clean-badge clean">Calculando...</span>
+                <button id="btn-clean-all-apps" class="btn-action-primary btn-game">
+                  🚀 Limpiar Todas las Cachés de Apps
+                </button>
+              </div>
+            </div>
+            <div class="quick-clean-grid">
+              <!-- NPM, Yarn & PNPM -->
+              <div class="quick-clean-card" id="card-clean-npm">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">📦</span>
+                  <span id="badge-clean-npm" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de NPM, Yarn & PNPM</h4>
+                <p>Elimina archivos .tar.gz y cachés de paquetes Node (_cacache). Seguro: no toca proyectos ni node_modules.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-npm" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-npm" class="btn-quick-clean-act">Limpiar NPM</button>
+                </div>
+              </div>
+
+              <!-- VS Code & Editores -->
+              <div class="quick-clean-card" id="card-clean-vscode">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">💻</span>
+                  <span id="badge-clean-vscode" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de VS Code & Editores</h4>
+                <p>Borra la caché de renderizado y Service Worker. Seguro: preserva tus extensiones, atajos y código.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-vscode" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-vscode" class="btn-quick-clean-act">Limpiar VS Code</button>
+                </div>
+              </div>
+
+              <!-- Python Pip & Cargo -->
+              <div class="quick-clean-card" id="card-clean-pip">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">🐍</span>
+                  <span id="badge-clean-pip" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de Pip & Cargo</h4>
+                <p>Purga ruedas .whl de Python y fuentes .crate de Rust. Seguro: no desinstala paquetes del entorno.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-pip" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-pip" class="btn-quick-clean-act">Limpiar Pip / Cargo</button>
+                </div>
+              </div>
+
+              <!-- Gradle & Android Studio -->
+              <div class="quick-clean-card" id="card-clean-gradle">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">☕</span>
+                  <span id="badge-clean-gradle" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de Gradle & Android</h4>
+                <p>Elimina transformadas y build-cache intermedias. Seguro: se regeneran solas al volver a compilar.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-gradle" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-gradle" class="btn-quick-clean-act">Limpiar Gradle</button>
+                </div>
+              </div>
+
+              <!-- Spotify & Media -->
+              <div class="quick-clean-card" id="card-clean-media">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">🎵</span>
+                  <span id="badge-clean-media" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de Spotify & Medios</h4>
+                <p>Borra canciones en streaming almacenadas temporalmente. Seguro: conserva tu sesión y playlists.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-media" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-media" class="btn-quick-clean-act">Limpiar Medios</button>
+                </div>
+              </div>
+
+              <!-- Steam & Epic Launchers -->
+              <div class="quick-clean-card" id="card-clean-launchers">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">🎮</span>
+                  <span id="badge-clean-launchers" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché Web de Steam & Epic</h4>
+                <p>Limpia la caché del navegador de la tienda (htmlcache / webcache). Seguro: no toca juegos instalados.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-launchers" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-launchers" class="btn-quick-clean-act">Limpiar Launchers</button>
+                </div>
+              </div>
+
+              <div class="quick-clean-card" id="card-clean-discord">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">💬</span>
+                  <span id="badge-clean-discord" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de Discord</h4>
+                <p>Borra la caché de imágenes, videos y GPUCache de Discord.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-discord" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-discord" class="btn-quick-clean-act">Limpiar Discord</button>
+                </div>
+              </div>
+
+              <div class="quick-clean-card" id="card-clean-browsers">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">🌐</span>
+                  <span id="badge-clean-browsers" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Caché de Navegadores</h4>
+                <p>Borra caché temporal de Google Chrome, Edge y Brave.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-browsers" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-browsers" class="btn-quick-clean-act">Limpiar Navegadores</button>
+                </div>
+              </div>
+
+              <div class="quick-clean-card" id="card-clean-crash-dumps">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">💥</span>
+                  <span id="badge-clean-crash-dumps" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Volcados de Error (.dmp)</h4>
+                <p>Elimina minivolcados de cuelgues antiguos y colas WER.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-crash-dumps" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-crash-dumps" class="btn-quick-clean-act">Limpiar Volcados</button>
+                </div>
+              </div>
+
+              <div class="quick-clean-card" id="card-clean-delivery-opt">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">📦</span>
+                  <span id="badge-clean-delivery-opt" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Delivery Optimization</h4>
+                <p>Purga residuos P2P de actualizaciones de Windows Update.</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-delivery-opt" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-delivery-opt" class="btn-quick-clean-act">Limpiar Delivery Opt</button>
+                </div>
+              </div>
+
+              <div class="quick-clean-card" id="card-clean-ghost">
+                <div class="quick-clean-top">
+                  <span class="quick-clean-icon">👻</span>
+                  <span id="badge-clean-ghost" class="clean-badge clean">Comprobando...</span>
+                </div>
+                <h4>Dispositivos Fantasma (PnP)</h4>
+                <p>Elimina periféricos USB desconectados, pantallas viejas y drivers huérfanos que saturan el Administrador de Dispositivos (RionTool).</p>
+                <div class="quick-clean-footer">
+                  <span id="time-clean-ghost" class="clean-last-time">Sin registros</span>
+                  <button id="btn-clean-ghost" class="btn-quick-clean-act">Purgar Dispositivos Fantasma</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISTA 8: SEGURIDAD & BACKUP -->
+        <section id="view-backup" class="view-tab">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Respaldos y actividad de Apex</h1>
+              <p class="view-subtitle">Comprueba los cambios guardados y restaura las preferencias compatibles desde su panel.</p>
+            </div>
+          </div>
+          <div class="backup-cards-wrap">
+            <div class="backup-card">
+              <div class="backup-icon">🛡️</div>
+              <div class="backup-content">
+                <h3>Crear Punto de Restauración del Sistema</h3>
+                <p>Crea una instantánea en Windows antes de aplicar cambios para poder restaurar tu equipo en cualquier instante.</p>
+                <div class="backup-actions">
+                  <input type="text" id="input-restore-name" class="input-text" placeholder="Nombre del punto" value="ApexOptimizer_ManualBackup">
+                  <button id="btn-create-restore-point" class="btn-action-primary">Crear Instantánea</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="backup-card danger-card">
+              <div class="backup-icon">↩️</div>
+              <div class="backup-content">
+                <h3>Deshacer ajustes de Apex</h3>
+                <p>Restaura los ajustes generales, de auditoría y de interfaz que Apex respaldó. Los juegos, DNS, preferencias de GPU y herramientas Apex se restauran desde sus paneles. Las limpiezas no se pueden deshacer.</p>
+                <div class="backup-actions">
+                  <button id="btn-revert-all-main" class="btn-danger">Deshacer cambios guardados</button>
+                  <button id="btn-restore-session" class="btn-action-secondary" type="button">Restaurar prioridades de sesión</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="recovery-section">
+            <div class="recovery-section-header"><h2>Respaldos de ajustes y juegos</h2><button id="btn-refresh-recovery" class="btn-action-secondary" type="button">Actualizar</button></div>
+            <p class="recovery-scope">Esta lista reúne ajustes generales, Snappy, Apex y juegos. DNS, GPU por aplicación, inicio y HOSTS tienen sus controles de restauración en su propia sección. Los archivos eliminados por una limpieza no tienen respaldo.</p>
+            <p id="recovery-warning" class="recovery-warning" hidden></p>
+            <ul id="recovery-summary" class="release-records"><li>Consultando respaldos…</li></ul>
+            <h2>Actividad reciente</h2>
+            <p class="recovery-scope">El historial registra el resultado de las acciones manuales, sin guardar los argumentos enviados a las herramientas. Las tareas de limpieza automática se consultan en Memoria RAM.</p>
+            <ul id="operation-history" class="release-records"><li>Sin actividad manual registrada.</li></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal Interactivo de Debloat Personalizado -->
+    <div id="debloat-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Seleccionar aplicaciones de Windows">
+      <div class="debloat-modal-card">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <h2 class="modal-title">🧹 Debloat de Windows Personalizado</h2>
+            <p class="modal-subtitle">
+              Selecciona exactamente qué aplicaciones deseas desinstalar. Puedes desmarcar las que utilices para conservarlas intactas.
+            </p>
+          </div>
+          <button id="btn-close-debloat-modal" class="btn-modal-close" title="Cerrar">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="modal-toolbar">
+          <div class="toolbar-actions">
+            <button id="btn-debloat-select-all" class="btn-toolbar-link">✓ Marcar Instaladas</button>
+            <button id="btn-debloat-deselect-all" class="btn-toolbar-link">✕ Desmarcar Todo</button>
+            <button id="btn-debloat-refresh" class="btn-toolbar-link">🔄 Re-escanear</button>
+          </div>
+          <span id="debloat-selected-counter" class="toolbar-counter">0 seleccionadas</span>
+        </div>
+
+        <div id="debloat-apps-list" class="modal-body-scroll">
+          <!-- Rellenado dinámicamente con las apps y checkboxes -->
+        </div>
+
+        <div class="modal-footer">
+          <button id="btn-cancel-debloat" class="btn-modal-cancel">Cancelar</button>
+          <button id="btn-apply-custom-debloat" class="btn-modal-apply">⚡ Desinstalar Seleccionadas</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Universal de Confirmación y Resumen de Acciones -->
+    <div id="action-confirm-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" aria-describedby="confirm-modal-subtitle">
+      <div class="confirm-modal-card">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <h2 id="confirm-modal-title" class="modal-title">🛡️ Confirmar Acción</h2>
+            <p id="confirm-modal-subtitle" class="modal-subtitle">Revisa los cambios que se aplicarán en tu sistema antes de continuar.</p>
+          </div>
+          <button id="btn-close-confirm-modal" class="btn-modal-close" title="Cerrar">✕</button>
+        </div>
+        
+        <div class="confirm-modal-body">
+          <div class="confirm-meta-row">
+            <span id="confirm-modal-badge" class="confirm-badge">Seguro</span>
+            <div id="confirm-modal-space-box" class="confirm-space-box" style="display: none;">
+              <span class="space-label">Espacio estimado a liberar:</span>
+              <span id="confirm-modal-space-val" class="space-val mono">-- MB</span>
+            </div>
+          </div>
+
+          <div class="confirm-details-box">
+            <h4 class="details-heading">Detalles de lo que se cambiará / eliminará:</h4>
+            <ul id="confirm-modal-details-list" class="confirm-details-list"></ul>
+          </div>
+
+          <!-- Advertencia de Riesgo e Impacto para Cambios Invasivos -->
+          <div id="confirm-modal-risk-box" class="confirm-risk-box" style="display: none;">
+            <div class="risk-box-header">
+              <span class="risk-icon">⚠️</span>
+              <strong class="risk-title">Riesgos y Consecuencias a Considerar:</strong>
+            </div>
+            <ul id="confirm-modal-risk-list" class="confirm-risk-list"></ul>
+          </div>
+
+          <!-- Checkbox para Crear Punto de Restauración Previo Automático -->
+          <div id="confirm-modal-restore-box" class="confirm-restore-box" style="display: none;">
+            <label class="confirm-restore-label">
+              <input type="checkbox" id="confirm-modal-restore-check" class="confirm-restore-check" checked>
+              <div class="confirm-restore-info">
+                <span class="confirm-restore-title">🛡️ Crear Punto de Restauración antes de aplicar</span>
+                <span class="confirm-restore-sub">Crea un punto de restauración de Windows. No sustituye una copia de seguridad de tus archivos personales.</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="confirm-safety-note">
+            <span class="safety-icon">💡</span>
+            <span id="confirm-modal-note-text" class="safety-text">Revisa el alcance y las consecuencias antes de confirmar.</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="btn-cancel-confirm-action" class="btn-modal-cancel">Cancelar</button>
+          <button id="btn-execute-confirm-action" class="btn-modal-apply">
+            <span id="confirm-btn-spinner" class="btn-spinner" style="display: none;">⏳</span>
+            <span id="confirm-btn-text">Confirmar y Ejecutar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor de notificaciones Toast -->
+    <div id="toast-container" class="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="renderer.js"></script>
+  <script src="release-ux.js"></script>
+  <script src="performance-advisor.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# Dependencias
+node_modules/
+
+# Salidas de compilación binarias (los ejecutables se publican en GitHub Releases)
+dist/
+
+# Archivos de caché y logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Entornos y temporales de desarrollo
+scratch/
+reference/
+archive/
+.impeccable/
+assets/icon.jpg
+tweaks_state.json
+activity-v1.json
+restoration-v1.json
+game-backups-v1.json
+design-gpu-backups-v1.json
+dns-backup-v1.json
+ascension-priority-backup-v1.json
+tweaks-state-v1.json
+*.dmp
+*.bdq
+
+# Credenciales y certificados de firma locales
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editores
+.vscode/
+.idea/
+*.suo
+*.user

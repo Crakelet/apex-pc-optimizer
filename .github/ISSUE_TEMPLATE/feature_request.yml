@@ -1,0 +1,23 @@
+name: Propuesta de mejora
+description: Propón una mejora y explica qué necesidad resuelve.
+title: "[Propuesta] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Necesidad
+      description: Describe el problema concreto y el flujo de trabajo afectado.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Comportamiento propuesto
+      description: Incluye alcance, consecuencias y fuentes oficiales si requiere cambiar Windows o una aplicación.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Cómo comprobar el resultado
+      description: Propón una comparación medible y una forma de restauración cuando corresponda. No incluyas datos privados.

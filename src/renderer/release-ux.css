@@ -1,0 +1,26 @@
+.operation-banner { position: sticky; top: 0; z-index: 20; display: flex; align-items: flex-start; gap: 16px; padding: 15px 18px; margin-bottom: 22px; border: 1px solid rgba(88, 210, 235, .4); border-radius: 12px; background: rgba(18, 33, 50, .93); backdrop-filter: blur(18px); box-shadow: 0 8px 24px rgba(0, 0, 0, .3); }
+.operation-banner>div { flex: 1; min-width: 0; }
+.operation-banner strong { font-size: 13px; color: #e6f8ff; }
+.operation-banner p { color: #c1cfdf; margin: 6px 0 0; font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; user-select: text; }
+.operation-banner[data-status="failed"],.operation-banner[data-status="interrupted"] { border-color: #b3884d; }
+.operation-banner button { background: none; color: #bdcde2; border: 0; cursor: pointer; padding: 2px 5px; }
+.recovery-section { margin-top: 28px; }
+.recovery-section h2 { font-size: 17px; margin: 0; }
+.recovery-section-header { display: flex; gap: 18px; justify-content: space-between; align-items: center; }
+.recovery-scope { margin: 10px 0 16px; font-size: 12.5px; line-height: 1.65; color: var(--text-secondary); max-width: 85ch; }
+.recovery-warning { color: #f8d195; padding: 14px; border-radius: 10px; background: rgba(104, 71, 27, .2); line-height: 1.6; font-size: 13px; margin-bottom: 14px; }
+.release-records { list-style: none; padding: 0; margin: 0 0 30px; max-height: 420px; overflow: auto; scrollbar-width: thin; scrollbar-color: #45566d transparent; }
+.release-record,.release-empty { background: var(--glass-surface); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px 17px; margin-bottom: 9px; }
+.release-record { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.release-record>div { min-width: 0; }
+.release-record strong { font-size: 13px; line-height: 1.5; display: block; }
+.release-record p,.release-record time,.release-empty { color: var(--text-secondary); font-size: 12px; line-height: 1.65; }
+.release-record p { margin: 5px 0; user-select: text; overflow-wrap: anywhere; }
+.release-record time { font-size: 11px; }
+.record-status { flex-shrink: 0; color: #7ce5c5; font-size: 11px; font-weight: 600; padding: 4px 7px; border-radius: 5px; background: rgba(36, 160, 125, .14); }
+.status-failed,.status-prepared,.status-interrupted { color: #f8d195; background: rgba(164, 113, 41, .18); }
+.status-running { color: #9ae7f1; background: rgba(38, 153, 176, .2); }
+.backup-actions .btn-action-primary,.backup-actions .btn-danger { padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 650; cursor: pointer; }
+.backup-actions .btn-action-primary { color: #a6f0f7; border: 1px solid #3d9eac; background: rgba(29, 126, 145, .17); }
+.backup-actions .btn-danger { color: #ffb5c7; border: 1px solid #b94b6a; background: rgba(160, 32, 72, .2); }
+.backup-actions .btn-danger:disabled { color: #a4b1c3; border-color: #536175; background: rgba(80, 96, 119, .13); cursor: not-allowed; }

@@ -1,0 +1,59 @@
+name: Preparar release en borrador
+on:
+  push:
+    tags: ['v*.*.*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Validar versión del tag
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          if ($env:GITHUB_REF_NAME -notmatch '^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$' -or $env:GITHUB_REF_NAME -ne "v$version") { throw 'El tag debe coincidir exactamente con package.json.' }
+      - run: npm ci
+      - run: npm run test:windows
+      - run: npm run test:smoke
+      - run: npm run test:release-startup
+      - run: npm run build
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+          WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+          WIN_CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+      - name: Registrar procedencia de los ejecutables
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-path: dist/*-x64.exe
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: apex-windows-x64
+          path: |
+            dist/*-x64.exe
+            dist/SHA256SUMS.txt
+            dist/signatures.json
+            dist/release-manifest.json
+      - name: Crear borrador para revisión manual
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $assets = @(Get-ChildItem dist -Filter '*-x64.exe' | Select-Object -ExpandProperty FullName)
+          $assets += @('dist/SHA256SUMS.txt', 'dist/signatures.json', 'dist/release-manifest.json')
+          gh release create $env:GITHUB_REF_NAME @assets --verify-tag --draft --prerelease --title "Apex PC Optimizer $env:GITHUB_REF_NAME — Evaluación" --notes-file .github/release-notes.md
