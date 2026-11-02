@@ -1,6 +1,6 @@
 # Informe de revisión para Bitdefender
 
-Actualizado: 1 de noviembre de 2026. Borrador técnico, sin envío confirmado, caso ni veredicto. Este documento no contiene contactos privados, perfiles, respaldos ni capturas del sistema.
+Actualizado: 1 de noviembre de 2026. El formulario oficial confirmó el envío del informe y metadatos; no mostró número de caso y no hay veredicto del proveedor. No se enviaron ejecutables. Este documento no contiene contactos privados, perfiles, respaldos ni capturas del sistema.
 
 ## Motivo
 
@@ -8,7 +8,14 @@ Solicitamos identificar y analizar una posible detección de comportamiento rela
 
 ## Fuentes y muestra
 
-Repositorio: [Crakelet/apex-pc-optimizer](https://github.com/Crakelet/apex-pc-optimizer). La versión actual de evaluación es v1.0.4. La [compilación de distribución](https://github.com/Crakelet/apex-pc-optimizer/actions/workflows/release.yml) debe terminar y aportar su commit, manifiesto, hashes y procedencia antes de identificar las muestras exactas. Los ejecutables permanecen en borrador, sin descarga pública para el proveedor.
+Repositorio: [Crakelet/apex-pc-optimizer](https://github.com/Crakelet/apex-pc-optimizer). La versión actual de evaluación es v1.0.4. La [compilación de distribución](https://github.com/Crakelet/apex-pc-optimizer/actions/runs/41363159191) terminó correctamente desde `d490fb3e7c61986d5a527afb28b8d79a14e7f802`, tag v1.0.4. Los ejecutables permanecen en borrador, sin descarga pública para el proveedor.
+
+| Archivo | Bytes | SHA-256 | Authenticode |
+| --- | ---: | --- | --- |
+| Apex-PC-Optimizer-v1.0.4-Portable-x64.exe | 110995559 | `30a9df0b82b5857464aa7d5c8fd119cd1a6436826dbaffd2fc1e92d1076621f8` | NotSigned |
+| Apex-PC-Optimizer-v1.0.4-Setup-x64.exe | 121968873 | `6de0ce0089cc8e1886d8a46470db1698fe398d1918615b2e15b4e1cff2711051` | NotSigned |
+
+Ambos archivos descargados se contrastaron localmente con el [manifiesto de CI](release-manifests/v1.0.4.json) en tamaño, hash y firma. Las atestaciones también pasaron la verificación con repositorio, workflow, commit y tag exigidos. No se ejecutaron esos binarios y estos resultados no son un veredicto de antivirus. La CI comparó 55 archivos del paquete con el checkout.
 
 Los candidatos anteriores no se atribuyen al evento histórico. Sus archivos y resultados locales se conservan separados; no se reutilizan sus huellas para una compilación nueva. El historial público se renovó para retirar capturas con datos reales de hardware, no para ocultar funciones del programa.
 

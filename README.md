@@ -23,7 +23,7 @@ Las capturas son demostraciones con datos ficticios; no muestran un equipo ni pe
 
 Abre [GitHub Releases](https://github.com/Crakelet/apex-pc-optimizer/releases) y elige una publicación estable. Si no aparece ninguna, todavía no hay binarios públicos publicados.
 
-La v1.0.4 prepara una nueva compilación desde el historial público limpio. Sus ejecutables permanecerán en borrador mientras se completa la revisión de antivirus. Consulta el resultado real en [Actions](https://github.com/Crakelet/apex-pc-optimizer/actions) y el alcance de las comprobaciones en [Validación](docs/VALIDATION.md).
+La v1.0.4 ya superó la [compilación desde el historial público limpio](https://github.com/Crakelet/apex-pc-optimizer/actions/runs/41363159191). Sus ejecutables permanecen en borrador mientras se completa la revisión de antivirus. Consulta [Validación](docs/VALIDATION.md), la [revisión de privacidad de la publicación](docs/PUBLICATION_PRIVACY.md) y la [alerta de dependencia de compilación pendiente](docs/DEPENDENCY_REVIEW.md).
 
 | Archivo | Uso |
 | --- | --- |

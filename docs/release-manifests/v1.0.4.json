@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "version": "1.0.4",
+  "platform": "windows-x64",
+  "filesMatched": 55,
+  "artifacts": [
+    {
+      "file": "Apex-PC-Optimizer-v1.0.4-Portable-x64.exe",
+      "size": 110995559,
+      "sha256": "30a9df0b82b5857464aa7d5c8fd119cd1a6436826dbaffd2fc1e92d1076621f8",
+      "signature": "NotSigned"
+    },
+    {
+      "file": "Apex-PC-Optimizer-v1.0.4-Setup-x64.exe",
+      "size": 121968873,
+      "sha256": "6de0ce0089cc8e1886d8a46470db1698fe398d1918615b2e15b4e1cff2711051",
+      "signature": "NotSigned"
+    }
+  ]
+}

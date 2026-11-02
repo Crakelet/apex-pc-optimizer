@@ -17,12 +17,12 @@ Bitdefender describe su análisis de comportamiento en [Advanced Threat Defense]
 
 ## Distribución actual
 
-La v1.0.4 se prepara desde el historial público limpio. El resultado efectivo está en [Actions](https://github.com/Crakelet/apex-pc-optimizer/actions/workflows/release.yml). Cada build debe aportar su propio manifiesto, SHA-256 y estado Authenticode; no se reutilizan huellas de versiones anteriores ni se confunde procedencia de GitHub con una firma de editor.
+La [compilación de v1.0.4 desde el historial limpio](https://github.com/Crakelet/apex-pc-optimizer/actions/runs/41363159191) terminó correctamente. Se verificaron los dos archivos descargados contra su [manifiesto](release-manifests/v1.0.4.json), hashes, tamaños, estado `NotSigned` y atestaciones vinculadas al commit y tag oficiales. No se ejecutaron para comprobarlos. La procedencia de GitHub no equivale a una firma de editor ni a un veredicto de antivirus.
 
 Los ejecutables se conservan en borrador para revisión. No se atribuyen a la alerta histórica ni se presentan como aceptados por Bitdefender. Las compilaciones y evidencias previas se conservan localmente; sus referencias públicas se retiraron al limpiar capturas del historial.
 
 ## Revisión con el proveedor
 
-El [informe técnico](BITDEFENDER_SUBMISSION.md) está preparado para solicitar análisis, sin afirmar un falso positivo. No hay un envío confirmado ni número de caso. No desactives protecciones, añadas exclusiones generales o restaures cuarentena para forzar una prueba.
+El 1 de noviembre de 2026 el formulario oficial confirmó el envío del [informe técnico y metadatos](BITDEFENDER_SUBMISSION.md). Se adjuntó únicamente un ZIP de documentación y hashes, sin ejecutables, perfiles, respaldos ni logs privados. Se pidió un canal adecuado para muestras de más de 100 MB. No se mostró un número de caso y todavía no hay respuesta técnica ni veredicto del proveedor. No desactives protecciones, añadas exclusiones generales o restaures cuarentena para forzar una prueba.
 
 El [soporte oficial](https://www.bitdefender.com/consumer/support/help/) debe indicar un canal apropiado para muestras de más de 100 MB. El contacto privado, las notificaciones originales y los logs del usuario no se incluyen en GitHub. Cualquier registro o binario adicional se revisará antes de compartirlo.
